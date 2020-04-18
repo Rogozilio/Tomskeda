@@ -65,7 +65,7 @@ namespace bdtest.Functions
                     case 3: nameDay[i] = "Ср"; break;
                     case 4: nameDay[i] = "Чт"; break;
                     case 5: nameDay[i] = "Пт"; break;
-                    case 6: nameDay[i] = "Сб"; break;
+                    case 6: nameDay[i] = "Сб"; break; 
                     case 0: nameDay[i] = "Вс"; break;
                 }
             }
