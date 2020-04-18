@@ -33,7 +33,7 @@ namespace bdtest.Functions
             {
                 if (product.Kind == "Салаты и закуски" && !extra)
                     return list;
-                if (product.Kind == "Салаты и закуски" && extra)
+                if (product.Kind == "Салаты и закуски" && extra) 
                     return list;
                 if (product.Komplex.Contains(day) && !extra)
                 {
