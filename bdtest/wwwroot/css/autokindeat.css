@@ -1,0 +1,26 @@
+#info-kind-eat{
+    padding:10px 10px 3px 10px;
+    height:44px;
+    font-family:'Oswald';
+    font-size:18px;
+    line-height: 1.15em;
+    background:#ffb444;
+    color:#008400;
+    text-align:center;
+    border-bottom:5px solid;
+    border-bottom-color:#97cf9a;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+}
+#list-kind-eat{
+    padding:20px 0 0 30px;
+}
+.kind-eat{
+    text-decoration: none;
+    color: black;
+    font-family:"Open Sans", "Verdana", "sans-serif";
+    font-size: 16px;
+    text-transform: inherit;
+    line-height: 1.5;
+    text-align:center;
+}

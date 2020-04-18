@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css?family=Cuprum&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+hr{
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  width:30px;
+  height:21px;
+}
+#menu-on{
+    min-width:auto;
+    margin: 20px 2% 2% 2%;
+    background-color:white;
+    font-size: 26px;
+    color:#ffb444;
+    font-family:'Oswald';
+    letter-spacing:2px;
+}
+.kind-product{
+    min-width:auto;
+    margin: 20px 2% 0 2%;
+    background-color:white;
+    font-size: 24px;
+    color:rgb(61, 56, 56);
+    font-weight: normal;
+    font-family:'cuprum';
+    text-transform: uppercase;
+}
+.komplex{
+    min-width:auto;
+    margin: 10px 2% 0 2%;
+    background-color:white;
+    border: 2px double #D3D3D3;
+}
+.kind-komplex{
+    font-size: 18px;
+    color:rgb(61, 56, 56);
+    font-weight: normal;
+    font-family:'cuprum';
+    text-transform: uppercase;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    margin:5px;
+}
+.change-komplex{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.box-komplex{
+    margin:8px auto 8px auto;
+    border:2px double #D3D3D3;
+}
+.box-komplex:hover{
+    cursor:pointer;
+}
+.box-komplex div img{
+    width:230px;
+    height:153px;
+}
+.box-komplex div{
+    width:230px;
+    font-family:"oswald", "Verdana", "sans-serif";
+    letter-spacing:1px;
+    margin:8px;
+}
+.extra-komplex{
+    margin:10px;
+    border:2px double #D3D3D3;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background-color:#E5F4DC;
+}
+.extra-komplex div img{
+    width:100px;
+    height:66px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin:auto;
+}
+.extra-komplex div:last-child{
+    font-size: 18px;
+    color:rgb(61, 56, 56);
+    font-weight: normal;
+    font-family:"oswald", "Verdana", "sans-serif";
+    letter-spacing:1px;
+    margin:auto 0 auto 10px;
+}
+.block-price-count{
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+#button-komplex{
+    padding:10px;
+    margin:5px 10px;
+    background-color:#e0e0e0;
+    text-align: center;
+    color:white;
+    text-decoration: none;
+    font-size:15px;
+    font-family: 'Russo One', sans-serif;
+    letter-spacing:1px;
+    text-transform: uppercase;
+}
+#price-komplex{
+    margin:auto 0;
+    font-size:25px;
+    font-family:"oswald";
+    text-align:right;
+}
+.product{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.view-product{
+    display:grid;  
+    grid-template-rows:40px 60px 26px;
+}
+.view-part-product{
+    display:grid; 
+    grid-template-columns: 65% 18% 17%;
+}
+.text-name-product{
+    top: 5px;
+    font-size:17px;
+    font-weight:500;
+    font-family:"oswald", "Verdana", "sans-serif";
+    letter-spacing:1px;
+    margin:5px 0 0 10px;
+}
+.text-des-product{
+    font-size:14px;
+    font-weight:normal;
+    font-family:"cuprum", "Verdana", "sans-serif";
+    color:grey;
+    margin:8px 0 0 10px;
+    padding: 3px;
+}
+.text-price-product{
+    font-size:22px;
+    text-align: right;
+    font-family:"oswald";
+}
+.text-ruble{
+    color:grey;
+    font-size:20px;
+    margin:0 15px 0 0;
+}
+#grid-add-order{
+    display: table-row;
+}
+.btn-minus{
+    font-family: Impact, fantasy !important;
+    line-height:15px;
+    font-size:33px;
+    vertical-align:top;
+    color:red;
+}
+.text-number-product{
+    text-align:center; 
+    vertical-align:middle;
+    width:24px
+}
+.btn-plus{
+    font-family: Impact, fantasy !important;
+    line-height:20px;
+    font-size:35px;
+    vertical-align:top;
+    color:green;
+}
+.text-kkal-product{
+    font-size:16px;
+    margin:4px 0 0 10px;
+}
+.image-food{
+    overflow:hidden;
+    padding:0;
+    margin: 3px 0 3px 3px
+}
+.image-food img{
+ -moz-transition: all 1s ease-out;
+ -o-transition: all 1s ease-out;
+ -webkit-transition: all 1s ease-out;
+}
+.image-food img:hover{
+ -webkit-transform: scale(1.2);
+ -moz-transform: scale(1.2);
+ -o-transform: scale(1.2);
+}

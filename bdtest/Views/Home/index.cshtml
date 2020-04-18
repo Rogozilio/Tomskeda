@@ -1,0 +1,266 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html lang="ru">
+
+<head>
+    <title>Доставка еды и обедов в Томске</title>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="bXuLuXk6iYQwH7PwVTfLqZvfZsnO7Aw0qSC8-0TCIzI" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <meta name="yandex-verification" content="851c6b426c45c0c2" />
+    <meta name="description"
+          content="Заказать обед очень просто: выберите понравившиеся блюда, укажите информацию о доставке и уже завтра мы доставим обед к вашему столу">
+    <meta name="keywords" content="заказать обед, обед в офис, заказать еду, обед на дом, еда на дом, доставка еды">
+    <meta name="robots" content="noyaca">
+    <meta name="robots" content="noodp">
+    <link async href="~/css/autokindeat.css" rel="stylesheet" type="text/css">
+    <link async href="~/css/autolisteat.css" rel="stylesheet" type="text/css">
+    <link async href="~/css/autoorder.css" rel="stylesheet" type="text/css">
+    <link async href="~/css/index.css" rel="stylesheet" type="text/css" />
+    <link async href="~/css/reset.css" rel="stylesheet" type="text/css" />
+    <link async href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link async href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async src="~/js/mousekindeat.js"></script>
+    <script defer src="~/js/mouseday.js"></script>
+    <script defer src="~/js/mouseproduct.js"></script>
+    <script async src="~/js/mouseaddorder.js"></script>
+</head>
+
+<body onload="clickDay(0)">
+    <div id="miniHat">
+        <div><H1 id=minihat-word> ДОМАШНЯЯ КУХНЯ</H1></div>
+        <div>
+            <a>
+                <img src="img/logozak1.png" alt="Заказать обед">
+                <h1>ЗАКАЗАТЬ ОБЕД</h1>
+            </a>
+        </div>
+        <div>
+            <a>
+                <img src="img/logoban.png" alt="Банкетные блюда">
+                <h1>БАНКЕТНЫЕ БЛЮДА</h1>
+            </a>
+        </div>
+        <div>
+            <a href="dostavka.html">
+                <img src="img/logodost.png" alt="Доставка и оплата">
+                <h1>ДОСТАВКА И ОПЛАТА</h1>
+            </a>
+        </div>
+        <div>
+            <a href="contacts.html"><h1>КОНТАКТЫ</h1></a>
+        </div>
+    </div>
+    <div id="hat">
+        <div>
+            <img src="img/logo.png" id="logo" alt="Главная" />
+        </div>
+        <div style="text-align:center;">
+            <a>
+                <img src="img/zakaz1.png" id="zakaz" alt="Заказать обед">
+                <h3 id="hat-text-eat"> ЗАКАЗАТЬ ОБЕД </h3>
+            </a>
+        </div>
+        <div style="text-align:center;" id="scroll-kind-eat">
+            <a href="Праздничные блюда">
+                <img src="img/banc.png" id="bancet" alt="Банкетные блюда ">
+                <h3 id="hat-text-bancet"> БАНКЕТНЫЕ БЛЮДА </h3>
+            </a>
+        </div>
+        <div style="text-align:center;">
+            <a href="dostavka.html">
+                <img src="img/delivery_food.png" id="delivery-food" alt="Доставка и оплата">
+                <h3 id="hat-text-pay"> ДОСТАВКА И ОПЛАТА </h3>
+            </a>
+        </div>
+        <div style="line-height: 40px;">
+            <div style="text-align:center;"><a class="work-time">ежедневно с 9:00 до 20:00</a></div>
+            <div style="text-align:center;"><a class="phone-work-time">+7 (3822) 506-555</a></div>
+            <div style="text-align:center;">
+                <h3 style="margin:5px 0;"><a class="kont-work-time" href="contacts.html">КОНТАКТЫ</a></h3>
+            </div>
+        </div>
+    </div>
+    <div class="view-main">
+        <div id="kinds-eat">
+            <div id="info-kind-eat"></div>
+            <div id="list-kind-eat">
+                <nav id="scroll-kind-eat">
+                    @foreach (var product in Model.GetAllKind())
+                    {
+                        <a href="@product" class="kind-eat">@product</a><br>
+                    }
+                </nav>
+            </div>
+        </div>
+        <div id="eat">
+            <div id="list-days" class="board1">
+                @for (int i = 0; i < 7; i++)
+                {
+                    <div class="day" onClick="clickDay(i)">
+                        @ViewBag.Date.GetNameDay()[i].@ViewBag.Date.GetDay()[i]
+                    </div>
+                }
+                <div class="left-btw"></div>
+                <div class="center-btw"></div>
+                <div class="right-btw"></div>
+            </div>
+            <div id="list-eat">
+                <div id="menu-on">
+                    Меню на @ViewBag.Date.GetMenuOn(1)
+                </div>
+                <div class="kind-product">
+                    <a id="Комплексные обеды">Комплексные обеды</a>
+                </div>
+                <div class="komplex">
+                    @foreach (var kind in Model.GetKomplexKind('1'))
+                    {
+                        <div class="kind-komplex">
+                            <div><hr></div>
+                            <div>ВЫБЕРИТЕ @kind</div>
+                            <div><hr></div>
+                        </div>
+                        <div class="change-komplex">
+                            @foreach (var komplex in Model.GetKomplexOnDayAndKind('1', kind))
+                            {
+                                <div class="box-komplex">
+                                    <input type="hidden" value="@komplex.Id">
+                                    <div><img src="@komplex.Image" alt=""></div>
+                                    <div>@komplex.Name</div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @foreach (var kind in Model.GetKomplexKind('1', true))
+                        @foreach (var komplex in Model.GetKomplexOnDayAndKind('1', kind))
+                        {
+                            <div class="extra-komplex">
+                                <input type="hidden" value="@komplex.Id?>">
+                                <div><img src="@komplex.Image" alt=""></div>
+                                <div>@komplex.Name</div>
+                            </div>
+                        }
+                    <div class='block-price-count'>
+                        <div id="price-komplex">
+                            175 <span class="text-ruble">₽</span>
+                        </div>
+                        <div id='button-komplex'>
+                            <a>добавить в корзину</a>
+                        </div>
+                    </div>
+                </div>
+                @foreach (var kind in Model.GetAllKind())
+                {
+                    <div class="kind-product">
+                        <a id="@kind">@kind</a>
+                    </div>
+                    @foreach (var product in Model.GetProductOnDayAndKind('1', kind))
+                    {
+                        <div class="product">
+                            <input type="hidden" value="@product.Id">
+                            <div>
+                                <div class="image-food"><img src="@product.Image" alt="" style="width:180px; height:120px;"></div>
+                            </div>
+                            <div class="view-product">
+                                <div class="text-name-product">
+                                    @product.Name
+                                </div>
+                                <div class="text-des-product">
+                                    @product.Description
+                                </div>
+                                <div class="view-part-product">
+                                    <div class="text-kkal-product">
+                                        <pre>@product.Info</pre>
+                                    </div>
+                                    <div class="text-price-product">
+                                        @product.Price <span class="text-ruble">₽</span>
+                                    </div>
+                                    <div>
+                                        <div id="grid-add-order" align="left">
+                                            <button class="btn-minus">−</button>
+                                            <input class="text-number-product" type=tel name=number maxlength=2 value=0 />
+                                            <button class="btn-plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="order">
+            <!--файл autoorder.html -->
+        </div>
+    </div>
+    <div id="footer">
+        <table>
+            <tr>
+                <td>ИП Рогозина Наталия Александровна</td>
+                <td>Россия, г. Томск, ул. Мокрушина, 9 стр. 31</td>
+            </tr>
+            <tr>
+                <td>ИНН 701750417893</td>
+                <td>время работы: ежедневно с 8:00 до 20:00</td>
+            </tr>
+            <tr>
+                <td>ОГРН 319703100086577</td>
+                <td>Телефон для связи:+7 3822 506-555</td>
+            </tr>
+            <a href="https://www.instagram.com/tomskeda.ru/" target="_blank"><img src="pict/instagram.png"></a>
+            <a href="https://vk.com/obedvtomske" target="_blank"><img src="pict/vk.png"></a>
+        </table>
+    </div>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+    <script defer src="js/mouseday.js"></script>
+    <script defer src="js/mousekindeat.js"></script>
+    <script defer src="js/hat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" async>
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(54680473, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });</script>
+    <noscript async>
+        <div><img src="https://mc.yandex.ru/watch/54680473" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144973198-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-144973198-1');</script>
+    <!-- Rating Mail.ru counter -->
+    <script type="text/javascript">
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({ id: "3147967", type: "pageView", start: (new Date()).getTime() });
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () { var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s); };
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "topmailru-code");</script><noscript>
+        <div>
+            <img src="https://top-fwz1.mail.ru/counter?id=3147967;js=na"
+                 style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+    <!-- //Rating Mail.ru counter -->
+</body>
+</html>

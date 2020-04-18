@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Russo+One&display=swap');
+#orders-list{
+    box-shadow: inset 1px 1px 10px rgba(154, 147, 140, 0.5);
+    margin:5px;
+    overflow: auto;
+    max-height:60vh;
+}
+#orders-list::-webkit-scrollbar{
+    width:3px;
+}
+#orders-list::-webkit-scrollbar-track{
+    background:#e0e0e0;
+}
+#orders-list::-webkit-scrollbar-thumb{
+    background:DarkGrey;
+    border-radius:200px;
+}
+#date-orders{
+    display: table;
+    padding:7px 0 6px 0;
+    font-family:'Oswald';
+    font-size:18px;
+    height: 44px;
+    width:100%;
+    background:#ffb444;
+    color:#008400;
+    text-align:center;
+    border-bottom:5px solid;
+    border-bottom-color:#97cf9a;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+}
+#date-orders a{
+    display: table-cell;
+    vertical-align: middle;
+}
+#price-amount{
+    display:grid;
+    grid-template-columns: 3fr 7fr;
+    border-top-color:#ada6a6;
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+#checkout{
+    padding:10px;
+    margin:10px 5px;
+    background-color:#e0e0e0;
+    text-align: center;
+}
+#text-checkout{
+    color:white;
+    text-decoration: none;
+    font-size:15px;
+    font-family: 'Russo One', sans-serif;
+    letter-spacing:1px;
+    text-transform: uppercase;
+}
+.block-order{
+    margin:3px;
+}
+.name-order{
+    font-size:16px;
+    font-family:Cuprum, sans-serif;
+    line-height: 1.3em;
+    padding:5px;
+    border-top-color: #c3beb9; 
+    border-top-style: solid; 
+    border-top-width: 2px;
+    border-bottom-color: #c3beb9; 
+    border-bottom-style: dashed; 
+    border-bottom-width: 1px;
+}
+.price-order{
+    text-align:center;
+    padding: 10px 0 0 0;
+    font-family:"oswald", "Verdana", "sans-serif";;
+    font-size:16px;
+    font-weight:normal;
+    letter-spacing: 1px;
+}
+.full-price-order{
+    font-size:18px;
+    font-family:Verdana, sans-serif;
+    padding: 7px 7px 0 7px;
+}
+.down-part-order{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+}
+.count-order{
+    display: table-row;
+    text-align:right;
+    padding:5px;
+}
+.btn-minus-order{
+    font-family: Impact, fantasy !important;
+    line-height:15px;
+    font-size:27px;
+    vertical-align:top;
+    color:red;
+}
+.text-number-order{
+    text-align:center; 
+    vertical-align:middle;
+    width:30px;
+    height:20px;
+}
+.btn-plus-order{
+    font-family: Impact, fantasy !important;
+    line-height:20px;
+    font-size:27px;
+    vertical-align:top;
+    color:green;
+}
