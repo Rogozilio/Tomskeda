@@ -33,7 +33,7 @@ namespace bdtest.Functions
         }
         public string GetNameMonth(int day)
         {
-            int month = _month;
+            int month = _month-1;
             string[] nameMount = { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
             if (day > DateTime.DaysInMonth(_year, _month))
                 _ = (month + 1 > 12) ? 1 : month++;
@@ -76,7 +76,7 @@ namespace bdtest.Functions
             int day = GetDay()[weekDay];
             string nameMonth = GetNameMonth(day);
             string nameDay = "";
-            switch (weekDay)
+            switch (GetWeekDay()[weekDay])
             {
                 case 1: nameDay = "Понедельник"; break;
                 case 2: nameDay = "Вторник"; break;
@@ -93,7 +93,7 @@ namespace bdtest.Functions
             int day = GetDay()[weekDay];
             string month = (_month < 10)?'0'+_month.ToString(): _month.ToString();
             string nameDay = "";
-            switch (weekDay)
+            switch (GetWeekDay()[weekDay])
             {
                 case 1: nameDay = "Понедельник"; break;
                 case 2: nameDay = "Вторник"; break;

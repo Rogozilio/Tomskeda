@@ -89,21 +89,13 @@
     </div>
     <div class="view-main">
         <div id="kinds-eat">
-            <div id="info-kind-eat"></div>
-            <div id="list-kind-eat">
-                <nav id="scroll-kind-eat">
-                    @foreach (var product in Model.GetAllKind())
-                    {
-                        <a href="@product" class="kind-eat">@product</a><br>
-                    }
-                </nav>
-            </div>
+            <!--GetKindsFood-->
         </div>
         <div id="eat">
             <div id="list-days" class="board1">
                 @for (int i = 0; i < 7; i++)
                 {
-                    <div class="day" onClick="clickDay(i)">
+                    <div class="day" onClick="clickDay(@i)">
                         @ViewBag.Date.GetNameDay()[i].@ViewBag.Date.GetDay()[i]
                     </div>
                 }
@@ -112,106 +104,11 @@
                 <div class="right-btw"></div>
             </div>
             <div id="list-eat">
-                <div id="menu-on">
-                    Меню на @ViewBag.Date.GetMenuOn(1)
-                </div>
-                <div class="kind-product">
-                    <a id="Комплексные обеды">Комплексные обеды</a>
-                </div>
-                <div class="komplex">
-                    @foreach (var kind in Model.GetKomplexKind('1'))
-                    {
-                        <div class="kind-komplex">
-                            <div><hr></div>
-                            <div>ВЫБЕРИТЕ @kind</div>
-                            <div><hr></div>
-                        </div>
-                        <div class="change-komplex">
-                            @foreach (var komplex in Model.GetKomplexOnDayAndKind('1', kind))
-                            {
-                                <div class="box-komplex">
-                                    <input type="hidden" value="@komplex.Id">
-                                    <div><img src="@komplex.Image" alt=""></div>
-                                    <div>@komplex.Name</div>
-                                </div>
-                            }
-                        </div>
-                    }
-                    @foreach (var kind in Model.GetKomplexKind('1', true))
-                        @foreach (var komplex in Model.GetKomplexOnDayAndKind('1', kind))
-                        {
-                            <div class="extra-komplex">
-                                <input type="hidden" value="@komplex.Id?>">
-                                <div><img src="@komplex.Image" alt=""></div>
-                                <div>@komplex.Name</div>
-                            </div>
-                        }
-                    <div class='block-price-count'>
-                        <div id="price-komplex">
-                            175 <span class="text-ruble">₽</span>
-                        </div>
-                        <div id='button-komplex'>
-                            <a>добавить в корзину</a>
-                        </div>
-                    </div>
-                </div>
-                @foreach (var kind in Model.GetAllKind())
-                {
-                    <div class="kind-product">
-                        <a id="@kind">@kind</a>
-                    </div>
-                    @foreach (var product in Model.GetProductOnDayAndKind('1', kind))
-                    {
-                        <div class="product">
-                            <input type="hidden" value="@product.Id">
-                            <div>
-                                <div class="image-food"><img src="@product.Image" alt="" style="width:180px; height:120px;"></div>
-                            </div>
-                            <div class="view-product">
-                                <div class="text-name-product">
-                                    @product.Name
-                                </div>
-                                <div class="text-des-product">
-                                    @product.Description
-                                </div>
-                                <div class="view-part-product">
-                                    <div class="text-kkal-product">
-                                        <pre>@product.Info</pre>
-                                    </div>
-                                    <div class="text-price-product">
-                                        @product.Price <span class="text-ruble">₽</span>
-                                    </div>
-                                    <div>
-                                        <div id="grid-add-order" align="left">
-                                            <button class="btn-minus">−</button>
-                                            <input class="text-number-product" type=tel name=number maxlength=2 value=0 />
-                                            <button class="btn-plus">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
+              <!--GetListFood-->  
             </div>
         </div>
         <div id="order">
-            <input name="day" type="hidden" value="<?php echo $_POST['iday']; ?>">
-            <div id='date-orders'><a>@ViewBag.Date.GetOrderOn(1)</a></div>
-            <div id="orders-list">
-                <!--mouseaddorders.js-->
-            </div>
-            <div id="price-amount">
-                <div class="full-price-order">Сумма:</div>
-                <div class="full-price-order" align="right">0 ₽</div>
-            </div>
-            <div id="checkout">
-                <a id="text-checkout">оформить заказ</a>
-            </div>
-            <script src="js/autoorder.js"></script>
-            <script type="text/javascript">
-                
-            </script>
+            <!--GetMiniBasket-->
         </div>
     </div>
     <div id="footer">

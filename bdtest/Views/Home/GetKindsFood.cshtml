@@ -1,0 +1,17 @@
+﻿<head>
+    <script async src="//code.jquery.com/jquery-latest.js"></script>
+    <script async src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+    <script async src="~/js/mousekindeat.js"></script>
+    <script defer src="~/js/mouseday.js"></script>
+    <script defer src="~/js/mouseproduct.js"></script>
+    <script async src="~/js/mouseaddorder.js"></script>
+</head>
+<div id="info-kind-eat"></div>
+<div id="list-kind-eat">
+    <nav id="scroll-kind-eat">
+        @foreach (var product in Model.GetAllKind())
+        {
+            <a href="@product" class="kind-eat">@product</a><br>
+        }
+    </nav>
+</div>
