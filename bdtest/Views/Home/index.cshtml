@@ -24,6 +24,8 @@
     <link async href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <link async href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async src="//code.jquery.com/jquery-latest.js"></script>
+    <script async src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
     <script async src="~/js/mousekindeat.js"></script>
     <script defer src="~/js/mouseday.js"></script>
     <script defer src="~/js/mouseproduct.js"></script>
@@ -35,19 +37,19 @@
         <div><H1 id=minihat-word> ДОМАШНЯЯ КУХНЯ</H1></div>
         <div>
             <a>
-                <img src="img/logozak1.png" alt="Заказать обед">
+                <img src="pict/logozak1.png" alt="Заказать обед">
                 <h1>ЗАКАЗАТЬ ОБЕД</h1>
             </a>
         </div>
         <div>
             <a>
-                <img src="img/logoban.png" alt="Банкетные блюда">
+                <img src="pict/logoban.png" alt="Банкетные блюда">
                 <h1>БАНКЕТНЫЕ БЛЮДА</h1>
             </a>
         </div>
         <div>
             <a href="dostavka.html">
-                <img src="img/logodost.png" alt="Доставка и оплата">
+                <img src="pict/logodost.png" alt="Доставка и оплата">
                 <h1>ДОСТАВКА И ОПЛАТА</h1>
             </a>
         </div>
@@ -57,23 +59,23 @@
     </div>
     <div id="hat">
         <div>
-            <img src="img/logo.png" id="logo" alt="Главная" />
+            <img src="pict/logo.png" id="logo" alt="Главная" />
         </div>
         <div style="text-align:center;">
             <a>
-                <img src="img/zakaz1.png" id="zakaz" alt="Заказать обед">
+                <img src="pict/zakaz1.png" id="zakaz" alt="Заказать обед">
                 <h3 id="hat-text-eat"> ЗАКАЗАТЬ ОБЕД </h3>
             </a>
         </div>
         <div style="text-align:center;" id="scroll-kind-eat">
             <a href="Праздничные блюда">
-                <img src="img/banc.png" id="bancet" alt="Банкетные блюда ">
+                <img src="pict/banc.png" id="bancet" alt="Банкетные блюда ">
                 <h3 id="hat-text-bancet"> БАНКЕТНЫЕ БЛЮДА </h3>
             </a>
         </div>
         <div style="text-align:center;">
             <a href="dostavka.html">
-                <img src="img/delivery_food.png" id="delivery-food" alt="Доставка и оплата">
+                <img src="pict/delivery_food.png" id="delivery-food" alt="Доставка и оплата">
                 <h3 id="hat-text-pay"> ДОСТАВКА И ОПЛАТА </h3>
             </a>
         </div>
@@ -194,7 +196,22 @@
             </div>
         </div>
         <div id="order">
-            <!--файл autoorder.html -->
+            <input name="day" type="hidden" value="<?php echo $_POST['iday']; ?>">
+            <div id='date-orders'><a>@ViewBag.Date.GetOrderOn(1)</a></div>
+            <div id="orders-list">
+                <!--mouseaddorders.js-->
+            </div>
+            <div id="price-amount">
+                <div class="full-price-order">Сумма:</div>
+                <div class="full-price-order" align="right">0 ₽</div>
+            </div>
+            <div id="checkout">
+                <a id="text-checkout">оформить заказ</a>
+            </div>
+            <script src="js/autoorder.js"></script>
+            <script type="text/javascript">
+                
+            </script>
         </div>
     </div>
     <div id="footer">

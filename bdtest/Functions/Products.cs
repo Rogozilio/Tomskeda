@@ -31,16 +31,16 @@ namespace bdtest.Functions
             List<String> list = new List<String>();
             foreach (var product in _base.products.ToList())
             {
-                if (product.Kind == "Салаты и закуски" && !extra)
-                    return list;
-                if (product.Kind == "Салаты и закуски" && extra) 
-                    return list;
-                if (product.Komplex.Contains(day) && !extra)
+                if (product.Komplex.Contains(day))
                 {
                     list.Add(product.Kind);
                 }
             }
             list = new List<string>(list.Distinct());
+            if (extra)
+                list.RemoveRange(0, list.IndexOf("Салаты и закуски"));
+            else
+                list = list.GetRange(0, list.IndexOf("Салаты и закуски"));
             return list;
         }
         public List<Product> GetProductOnDayAndKind(char day, string kind)

@@ -88,5 +88,22 @@ namespace bdtest.Functions
             }
             return day + " " + nameMonth + ",(" + nameDay + ")";
         }
+        public string GetOrderOn(int weekDay)
+        {
+            int day = GetDay()[weekDay];
+            string month = (_month < 10)?'0'+_month.ToString(): _month.ToString();
+            string nameDay = "";
+            switch (weekDay)
+            {
+                case 1: nameDay = "Понедельник"; break;
+                case 2: nameDay = "Вторник"; break;
+                case 3: nameDay = "Среда"; break;
+                case 4: nameDay = "Четверг"; break;
+                case 5: nameDay = "Пятница"; break;
+                case 6: nameDay = "Суббота"; break;
+                case 0: nameDay = "Воскресенье"; break;
+            }
+            return "ВАШ ЗАКАЗ НА "+ day + "." + month + ", " + nameDay;
+        }
     }
 }
