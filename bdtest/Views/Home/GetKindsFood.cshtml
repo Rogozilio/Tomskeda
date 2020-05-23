@@ -9,7 +9,7 @@
 <div id="info-kind-eat"></div>
 <div id="list-kind-eat">
     <nav id="scroll-kind-eat">
-        @foreach (var product in Model.GetAllKind())
+        @foreach (var product in Model.Products.GetKind(Model.Day))
         {
             <a href="@product" class="kind-eat">@product</a><br>
         }

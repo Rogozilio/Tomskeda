@@ -1,52 +1,55 @@
 ﻿<div id="menu-on">
-    Меню на @ViewBag.Date.GetMenuOn(ViewBag.Day)
+    Меню на @Model.Date.GetMenuOn(Model.Day)
 </div>
-<div class="kind-product">
-    <a id="Комплексные обеды">Комплексные обеды</a>
-</div>
-<div class="komplex">
-    @foreach (var kind in Model.GetKomplexKind(ViewBag.Day.ToString()))
-    {
-        <div class="kind-komplex">
-            <div><hr></div>
-            <div>ВЫБЕРИТЕ @kind</div>
-            <div><hr></div>
-        </div>
-        <div class="change-komplex">
-            @foreach (var komplex in Model.GetKomplexOnDayAndKind(ViewBag.Day.ToString(), kind))
+@if (Model.Day > 0 && Model.Day < 6)
+{
+    <div class="kind-product">
+        <a id="Комплексные обеды">Комплексные обеды</a>
+    </div>
+    <div class="komplex">
+        @foreach (var kind in Model.Products.GetKomplexKind(Model.Day))
+        {
+            <div class="kind-komplex">
+                <div><hr></div>
+                <div>ВЫБЕРИТЕ @kind</div>
+                <div><hr></div>
+            </div>
+            <div class="change-komplex">
+                @foreach (var komplex in Model.Products.GetKomplexOnDayAndKind(Model.Day, kind))
+                {
+                    <div class="box-komplex">
+                        <input type="hidden" value="@komplex.Id">
+                        <div><img src="@komplex.Image" alt=""></div>
+                        <div>@komplex.Name</div>
+                    </div>
+                }
+            </div>
+        }
+        @foreach (var kind in Model.Products.GetKomplexKind(Model.Day, true))
+            @foreach (var komplex in Model.Products.GetKomplexOnDayAndKind(Model.Day, kind))
             {
-                <div class="box-komplex">
+                <div class="extra-komplex">
                     <input type="hidden" value="@komplex.Id">
                     <div><img src="@komplex.Image" alt=""></div>
                     <div>@komplex.Name</div>
                 </div>
             }
-        </div>
-    }
-    @foreach (var kind in Model.GetKomplexKind(ViewBag.Day.ToString(), true))
-        @foreach (var komplex in Model.GetKomplexOnDayAndKind(ViewBag.Day.ToString(), kind))
-        {
-            <div class="extra-komplex">
-                <input type="hidden" value="@komplex.Id?>">
-                <div><img src="@komplex.Image" alt=""></div>
-                <div>@komplex.Name</div>
+        <div class='block-price-count'>
+            <div id="price-komplex">
+                175 <span class="text-ruble">₽</span>
             </div>
-        }
-    <div class='block-price-count'>
-        <div id="price-komplex">
-            175 <span class="text-ruble">₽</span>
-        </div>
-        <div id='button-komplex'>
-            <a>добавить в корзину</a>
+            <div id='button-komplex'>
+                <a>добавить в корзину</a>
+            </div>
         </div>
     </div>
-</div>
-@foreach (var kind in Model.GetAllKind())
+}
+@foreach (var kind in Model.Products.GetKind(Model.Day))
 {
     <div class="kind-product">
         <a id="@kind">@kind</a>
     </div>
-    @foreach (var product in Model.GetProductOnDayAndKind(ViewBag.Day.ToString(), kind))
+    @foreach (var product in Model.Products.GetProductOnDayAndKind(Model.Day, kind))
     {
         <div class="product">
             <input type="hidden" value="@product.Id">

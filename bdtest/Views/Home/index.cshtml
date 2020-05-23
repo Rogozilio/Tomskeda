@@ -96,7 +96,7 @@
                 @for (int i = 0; i < 7; i++)
                 {
                     <div class="day" onClick="clickDay(@i)">
-                        @ViewBag.Date.GetNameDay()[i].@ViewBag.Date.GetDay()[i]
+                        @Model.Date.GetListDay()[i]
                     </div>
                 }
                 <div class="left-btw"></div>

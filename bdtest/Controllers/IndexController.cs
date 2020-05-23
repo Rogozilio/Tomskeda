@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using bdtest.Functions;
 using bdtest.Models;
+using bdtest.Structs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bdtest.Controllers
@@ -12,32 +13,33 @@ namespace bdtest.Controllers
     {
         public IActionResult Index(int day = 0)
         {
-            Date date = new Date();
-            Products products = new Products();
-            ViewBag.Date = date;
-            ViewBag.Day = day;
-            return View(products);
+            DataSet data = new DataSet();
+            data.Products = new Products();
+            data.Date = new Date();
+            data.Day = data.Date.GetWeekDay()[day];
+            return View(data);
         }
         public IActionResult GetListFood(int day = 0)
         {
-            Date date = new Date();
-            Products products = new Products();
-            ViewBag.Date = date;
-            ViewBag.Day = day;
-            return View(products);
+            DataSet data = new DataSet();
+            data.Products = new Products();
+            data.Date = new Date();
+            data.Day = data.Date.GetWeekDay()[day];
+            return View(data);
         }
         public IActionResult GetMiniBasket(int day = 0)
         {
-            Date date = new Date();
-            ViewBag.Date = date;
-            ViewBag.Day = day;
-            return View();
+            DataSet data = new DataSet();
+            data.Date = new Date();
+            data.Day = data.Date.GetWeekDay()[day];
+            return View(data);
         }
         public IActionResult GetKindsFood(int day = 0)
         {
-            Products products = new Products();
-            ViewBag.Day = day;
-            return View(products);
+            DataSet data = new DataSet();
+            data.Products = new Products();
+            data.Day = new Date().GetWeekDay()[day];
+            return View(data);
         }
     }
 }

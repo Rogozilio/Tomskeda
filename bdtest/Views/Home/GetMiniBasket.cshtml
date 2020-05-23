@@ -1,5 +1,5 @@
-﻿<input name="day" type="hidden" value="<?php echo $_POST['iday']; ?>">
-<div id='date-orders'><a>@ViewBag.Date.GetOrderOn(ViewBag.Day)</a></div>
+﻿<input name="day" type="hidden" value="@Model.Day">
+<div id='date-orders'><a>@Model.Date.GetOrderOn(Model.Day)</a></div>
 <div id="orders-list">
     <!--mouseaddorders.js-->
 </div>
