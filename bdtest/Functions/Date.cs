@@ -24,14 +24,6 @@ namespace bdtest.Functions
             int day = _day + 1;
             int wday = (int)_wday;
             int[] days = new int[7];
-            //foreach(var _ in days)
-            //{
-            //    if (wday > 6)
-            //        wday = 0;
-            //    if (day > DateTime.DaysInMonth(_year, _month))
-            //        day = 1;
-            //    days[wday++] = day++;
-            //}
             for(int i = 0;i < 7;i++)
             {
                 days[i] = day++;

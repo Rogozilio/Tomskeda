@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.CodeAnalysis.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace bdtest.Functions
 {
@@ -69,6 +72,29 @@ namespace bdtest.Functions
                     list.Add(product);
                 }
             }
+            return list;
+        }
+        public string[] GetProductOnId(string cookieId, string cookieCount)
+        {
+            if (cookieId == null || cookieCount == null)
+            {
+                return null;
+            }
+            int i = 0;
+            int j = 0;
+            string[] count = cookieCount.Split(',');
+            string[] list = new string[count.Length*5];
+            foreach(var cookie in cookieId.Split(','))
+                foreach (var product in _base.products.ToList())
+                    if (product.Id.ToString() == cookie)
+                    {
+                        list[i++] = product.Id.ToString();
+                        list[i++] = product.Image;
+                        list[i++] = product.Name;
+                        list[i++] = product.Price.ToString();
+                        list[i++] = count[j++].ToString();
+                        break;
+                    }
             return list;
         }
     }

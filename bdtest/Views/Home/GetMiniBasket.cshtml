@@ -1,4 +1,7 @@
-﻿<input name="day" type="hidden" value="@Model.Day">
+﻿@{ 
+    var value = @Json.Serialize(Model.Products.GetProductOnId(Model.CookieId, Model.CookieCount));
+}
+<input name="day" type="hidden" value="@Model.Day">
 <div id='date-orders'><a>@Model.Date.GetOrderOn(Model.Day)</a></div>
 <div id="orders-list">
     <!--mouseaddorders.js-->
@@ -12,5 +15,5 @@
 </div>
 <script src="js/autoorder.js"></script>
 <script type="text/javascript">
-
+    loadCookie(@value)
 </script>

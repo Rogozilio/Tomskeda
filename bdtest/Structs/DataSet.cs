@@ -21,5 +21,13 @@ namespace bdtest.Structs
         /// 
         /// </summary>
         public int Day { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CookieId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CookieCount { get; set; }
     }
 }

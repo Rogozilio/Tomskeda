@@ -33,7 +33,10 @@ function syncProduct(thisit){
           }
       }
       if($(thisit).parent().find("input").first().val() >= 1)
-        createProduct($(thisit).parent().parent().parent().parent().parent().children().val(), $(thisit).parent().parent().parent().prev().prev().text(), $(thisit).parent().parent().prev().clone().children().remove().end().text(), $(thisit).parent().find("input").first().val());
+          createProduct($(thisit).parent().parent().parent().parent().parent().children().val(),
+              $(thisit).parent().parent().parent().prev().prev().text(),
+              $(thisit).parent().parent().prev().clone().children().remove().end().text(),
+              $(thisit).parent().find("input").first().val());
       priceСalculation();
 }
 //

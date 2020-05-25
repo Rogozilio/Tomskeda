@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using bdtest.Functions;
-using bdtest.Models;
+using System.Net.Http.Headers;
 using bdtest.Structs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace bdtest.Controllers
 {
@@ -30,8 +31,12 @@ namespace bdtest.Controllers
         public IActionResult GetMiniBasket(int day = 0)
         {
             DataSet data = new DataSet();
+            data.Products = new Products();
             data.Date = new Date();
             data.Day = data.Date.GetWeekDay()[day];
+            data.CookieId = Request.Cookies["ids" + data.Day];
+            data.CookieCount = Request.Cookies["counts" + data.Day];
+            ViewBag.a = new int[5] { 1,2,3,4,5 };
             return View(data);
         }
         public IActionResult GetKindsFood(int day = 0)

@@ -62,13 +62,12 @@ function syncOrderCookie(){
         counts += $(this).find('.text-number-order').val() + ',';
     })
     ids = ids.slice(0,-1);
-    counts = counts.slice(0,-1);
+    counts = counts.slice(0, -1);
     Cookies.set("ids"+day,ids);
     Cookies.set("counts"+day,counts);
 }
 function loadCookie(product)
 {
-    
     var day = $("input[name='day']").val();
     if(Cookies.get('ids'+day) !== null && Cookies.get('ids'+day) !== '' && Cookies.get('ids'+day) !== undefined)
     {
