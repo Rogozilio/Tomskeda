@@ -1,4 +1,5 @@
 ﻿using System;
+using bdtest.Enum;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,10 +23,11 @@ namespace bdtest.Functions
         public int[] GetDay()
         {
             int day = _day + 1;
-            int wday = (int)_wday;
             int[] days = new int[7];
             for(int i = 0;i < 7;i++)
             {
+                if (day > DateTime.DaysInMonth(_year, _month))
+                    day = 1;
                 days[i] = day++;
             }
             return days;
@@ -44,26 +46,18 @@ namespace bdtest.Functions
             int[] wday = GetWeekDay();
             for(int i = 0;i < 7;i++)
             {
-                switch (wday[i])
-                {
-                    case 1: nameDay[i] = "Пн"; break;
-                    case 2: nameDay[i] = "Вт"; break;
-                    case 3: nameDay[i] = "Ср"; break;
-                    case 4: nameDay[i] = "Чт"; break;
-                    case 5: nameDay[i] = "Пт"; break;
-                    case 6: nameDay[i] = "Сб"; break; 
-                    case 7: nameDay[i] = "Вс"; break;
-                }
+                ShortDayWeek dayWeek = (ShortDayWeek)wday[i];
+                nameDay[i] = dayWeek.ToString();
             }
             return nameDay;
         }
-        public string GetNameMonth(int day)
+        public Month GetNameMonth(int day)
         {
-            int month = _month-1;
-            string[] nameMount = { "Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря" };
-            if (day > DateTime.DaysInMonth(_year, _month))
-                _ = (month + 1 > 12) ? 1 : month++;
-            return nameMount[month];
+            int month = _month;
+            Month months = (Month)month;
+            if (day > DateTime.DaysInMonth(_year, _month) || _day > day)
+                months = (month + 1 > 12) ? (Month)1 : (Month)month+1;
+            return months;
         }
         public int[] GetWeekDay()
         {
@@ -90,36 +84,17 @@ namespace bdtest.Functions
         public string GetMenuOn(int weekDay)
         {
             int day = GetDay(weekDay);
-            string nameMonth = GetNameMonth(day);
-            string nameDay = "";
-            switch (weekDay)
-            {
-                case 1: nameDay = "Понедельник"; break;
-                case 2: nameDay = "Вторник"; break;
-                case 3: nameDay = "Среда"; break;
-                case 4: nameDay = "Четверг"; break;
-                case 5: nameDay = "Пятница"; break;
-                case 6: nameDay = "Суббота"; break;
-                case 7: nameDay = "Воскресенье"; break;
-            }
-            return day + " " + nameMonth + ",(" + nameDay + ")";
+            string nameMonth = GetNameMonth(day).ToString();
+            DayWeek nameDay = (DayWeek)weekDay;
+            return day + " " + nameMonth + ",(" + nameDay.ToString() + ")";
         }
         public string GetOrderOn(int weekDay)
         {
+            string fmt = "00.##";
             int day = GetDay(weekDay);
-            string month = (_month < 10)?'0'+_month.ToString(): _month.ToString();
-            string nameDay = "";
-            switch (weekDay)
-            {
-                case 1: nameDay = "Понедельник"; break;
-                case 2: nameDay = "Вторник"; break;
-                case 3: nameDay = "Среда"; break;
-                case 4: nameDay = "Четверг"; break;
-                case 5: nameDay = "Пятница"; break;
-                case 6: nameDay = "Суббота"; break;
-                case 7: nameDay = "Воскресенье"; break;
-            }
-            return "ВАШ ЗАКАЗ НА "+ day + "." + month + ", " + nameDay;
+            int month = (int)GetNameMonth(day);
+            DayWeek nameDay = (DayWeek)weekDay;
+            return "ВАШ ЗАКАЗ НА "+ day.ToString(fmt) + "." + month.ToString(fmt) + ", " + nameDay.ToString();
         }
     }
 }
