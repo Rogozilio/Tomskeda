@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using bdtest.Functions;
-using System.Net.Http.Headers;
 using bdtest.Structs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 
 namespace bdtest.Controllers
 {
-    public class HomeController : Controller
+    public class IndexController : Controller
     {
         public IActionResult Index(int day = 0)
         {
@@ -34,9 +33,12 @@ namespace bdtest.Controllers
             data.Products = new Products();
             data.Date = new Date();
             data.Day = data.Date.GetWeekDay()[day];
-            data.CookieId = Request.Cookies["ids" + data.Day];
-            data.CookieCount = Request.Cookies["counts" + data.Day];
-            ViewBag.a = new int[5] { 1,2,3,4,5 };
+            Response.Cookies.Append("day", data.Day.ToString());
+            data.Cookie = new Models.Cookie()
+            {
+                Ids = Request.Cookies["ids" + data.Day],
+                Counts = Request.Cookies["counts" + data.Day]
+            };
             return View(data);
         }
         public IActionResult GetKindsFood(int day = 0)

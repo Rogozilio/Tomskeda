@@ -71,7 +71,12 @@ namespace bdtest.Functions
             }
             return wdays;
         }
-        
+        public string GetYear(int weekDay)
+        {
+            int day = GetDay(weekDay);
+            string year = ((int)GetNameMonth(day) < 13)?_year.ToString():_year+1.ToString();
+            return year;
+        }
         public string[] GetListDay()
         {
             string[] listDay = new string[7];
@@ -80,6 +85,13 @@ namespace bdtest.Functions
                 listDay[i] = GetNameDay()[i] + '.' + GetDay()[i];
             }
             return listDay;
+        }
+        public string GetDateFrontpad(int weekDay)
+        {
+            string year = GetYear(weekDay);
+            int month = (int)GetNameMonth(GetDay(weekDay));
+            string day = GetDay(weekDay).ToString("00");
+            return year + '-' + month.ToString("00") + '-' + day + ' ';
         }
         public string GetMenuOn(int weekDay)
         {

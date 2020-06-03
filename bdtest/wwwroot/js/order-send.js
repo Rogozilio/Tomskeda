@@ -7,7 +7,8 @@ function loadCookie(product)
         if(product[i].indexOf("2,") != -1)
         {
             var id = product[i].split(',');
-            var name = product[i+2].split('<br>-');
+            var name = product[i + 2].split('<br> -');
+            alert
             $('#list-eat-order').append("<div class='block-komplex-order'>"+
                                             "<input type='hidden' value=" + product[i] + ">"+
                                             "<div class='komplex-order'>"+

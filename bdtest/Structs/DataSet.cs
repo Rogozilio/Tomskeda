@@ -24,10 +24,6 @@ namespace bdtest.Structs
         /// <summary>
         /// 
         /// </summary>
-        public string CookieId { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string CookieCount { get; set; }
+        public Cookie Cookie { get; set; }
     }
 }

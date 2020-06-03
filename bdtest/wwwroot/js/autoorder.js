@@ -11,7 +11,7 @@ function priceСalculation(){
     if(fullPrice > 0)
     {
         $("#checkout").css({"background-color":"#008400","border":"1px solid #478a2d","cursor":"pointer"});
-        $("#checkout").attr('onclick',"window.location.href='order-send.html'");
+        $("#checkout").attr('onclick',"window.location.href='Order/OrderSend'");
     }
     else
     {

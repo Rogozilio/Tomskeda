@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -15,6 +16,7 @@ namespace bdtest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -24,6 +26,9 @@ namespace bdtest
                 app.UseDeveloperExceptionPage();
             }
 
+            var options = new RewriteOptions().AddRedirect("Order/OrderSend", "order");
+                
+            app.UseRewriter(options);
             app.UseStaticFiles();
             app.UseRouting();
 
@@ -31,7 +36,11 @@ namespace bdtest
             {
                 endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}");
+                pattern: "{controller=Index}/{action=Index}");
+
+                endpoints.MapControllerRoute(
+                name: "order",
+                pattern: "{controller=Order}/{action=OrderSend}");
             });
         }
     }

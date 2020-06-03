@@ -1,0 +1,316 @@
+﻿@{
+    var value = @Json.Serialize(Model.Products.GetProductOnId(Model.Cookie.Ids, Model.Cookie.Counts));
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Доставка обедов в Томске</title>
+    <meta charset="utf-8">
+    <link acync href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link acync href="css/order-send.css" rel="stylesheet" />
+    <link acync href="css/autoorder.css" rel="stylesheet" />
+    <link acync href="css/autolisteat.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="js/order-send.js"></script>
+    <script src="js/hat.js"></script>
+</head>
+<body>
+    <div id="hat">
+        <div>
+            <img src="pict/logo.png" id="logo" alt="Главная" />
+        </div>
+        <div style="text-align:center;">
+            <a href="index.html">
+                <img src="pict/zakaz.png" id="zakaz" alt="Заказать обед">
+                <h3 id="hat-text-eat"> ЗАКАЗАТЬ ОБЕД </h3>
+            </a>
+        </div>
+        <div style="text-align:center;">
+            <a>
+                <img src="pict/banc.png" id="bancet" alt="Банкетные блюда ">
+                <h3 id="hat-text-bancet"> БАНКЕТНЫЕ БЛЮДА </h3>
+            </a>
+        </div>
+        <div style="text-align:center;">
+            <a href="dostavka.html">
+                <img src="pict/delivery_food.png" id="delivery-food" alt="Доставка и оплата">
+                <h3 id="hat-text-pay"> ДОСТАВКА И ОПЛАТА </h3>
+            </a>
+        </div>
+        <div style="line-height: 40px;">
+            <div style="text-align:center;"><a class="work-time">ежедневно с 9:00 до 20:00</a></div>
+            <div style="text-align:center;"><a class="phone-work-time">+7 (3822) 506-555</a></div>
+            <div style="text-align:center;"><h3 style="margin:5px 0;"><a class="kont-work-time" href="contacts.html">КОНТАКТЫ</a></h3></div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="eat-order">
+            <div id="text-eat-order">
+                Ваша корзина на @Model.Date.GetMenuOn(Model.Day)
+            </div>
+            <hr>
+            <div id="list-eat-order">
+
+            </div>
+            <div id="full-price">
+
+            </div>
+            <div id="text-eat-order">
+                Добавить в корзину
+            </div>
+            <hr>
+            <div id="list-extra-order">
+                <div class='block-eat-order'>
+                    <input type="hidden" value="275" />
+                    <div class='image-eat-order'>
+                        <img src="pict/eda/hleb-psenicnyj.jpg">
+                    </div>
+                    <div class='name-eat-order font'>
+                        Хлеб пшеничный (кусочек) (20г)
+                    </div>
+                    <div class='price-eat-order font'>
+                        3
+                        <span> ₽</span>
+                    </div>
+                    <div class='count'>
+                        <button class='btn-minus-order' style="float:left">−</button>
+                        <input class='text-number-order' type=tel name=number maxlength=2 value="0" />
+                        <button class='btn-plus-order' style="float:right">+</button>
+                    </div>
+                    <div class='price-multiply-count font'>
+                        0
+                        <span> ₽</span>
+                    </div>
+                </div>
+                <div class='block-eat-order'>
+                    <input type="hidden" value="276" />
+                    <div class='image-eat-order'>
+                        <img src="pict/eda/hleb-rzanoj-kusocek.jpg">
+                    </div>
+                    <div class='name-eat-order font'>
+                        Хлеб ржаной (кусочек) (20г)
+                    </div>
+                    <div class='price-eat-order font'>
+                        3
+                        <span> ₽</span>
+                    </div>
+                    <div class='count'>
+                        <button class='btn-minus-order' style="float:left">−</button>
+                        <input class='text-number-order' type=tel name=number maxlength=2 value="0" />
+                        <button class='btn-plus-order' style="float:right">+</button>
+                    </div>
+                    <div class='price-multiply-count font'>
+                        0
+                        <span> ₽</span>
+                    </div>
+                </div>
+                <div class='block-eat-order'>
+                    <input type="hidden" value="348" />
+                    <div class='image-eat-order'>
+                        <img src="pict/eda/odnorazovaa-posuda-vilka-lozka-noz-salfetka-zubocistka.jpg">
+                    </div>
+                    <div class='name-eat-order font'>
+                        Одноразовая посуда: вилка, ложка, нож, салфетка, зубочистка (1шт)
+                    </div>
+                    <div class='price-eat-order font'>
+                        4
+                        <span> ₽</span>
+                    </div>
+                    <div class='count'>
+                        <button class='btn-minus-order' style="float:left">−</button>
+                        <input class='text-number-order' type=tel name=number maxlength=2 value="0" />
+                        <button class='btn-plus-order' style="float:right">+</button>
+                    </div>
+                    <div class='price-multiply-count font'>
+                        0
+                        <span> ₽</span>
+                    </div>
+
+                </div>
+            </div>
+            <form method="post" action="order/OrderSend">
+                <div style="display:grid; grid-template-columns: 1fr 1fr;">
+                    <div>
+                        <table>
+                            <tr><td>Имя*</td>         <td><input type="text" name="name" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Email*</td>       <td><input type="text" name="email" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Моб. телефон*</td><td><input type="text" name="phone" placeholder="+7(___) ___-____" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Улица*</td>       <td><input type="text" name="street" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Дом*</td>         <td><input type="text" name="house" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Подъезд*</td>     <td><input type="text" name="porch" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Этаж*</td>        <td><input type="text" name="floor" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Кв.(Офис)</td>    <td><input type="other" name="apartment" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                            <tr><td>Примечания</td>   <td><input type="other" name="comment" /></td></tr>
+                            <tr><td></td>             <td class="text-error"></td></tr>
+                        </table>
+                    </div>
+                    <div>
+                        <div id="text-delivery">ВРЕМЯ ДОСТАВКИ</div>
+                        <div id="time-delivery">
+                            <select name="date" size="1">
+                                <option value="11:00:13">11:00 - 13:00</option>
+                                <option value="13:00:15">13:00 - 15:00</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <table>
+                            <tr>
+                                <td><input type="radio" id="payChoice1" name="pay" value="1"></td>
+                                <td><label for="payChoice1">НАЛИЧНЫМИ КУРЬЕРУ</label></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="pay-description">Вы можете произвести оплату наличными курьеру при получении Вашего заказа.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" id="payChoice2" name="pay" value="885"></td>
+                                <td><label for="close">КАРТОЙ КУРЬЕРУ (временно недоступно)</label></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="pay-description">Вы можете произвести оплату банковской картой курьеру при получении заказа.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" id="payChoice3" name="pay" value="2"></td>
+                                <td><label for="payChoice3">ОПЛАТА КАРТОЙ ОНЛАЙН</label></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="pay-description">Вы можете произвести оплату банковской картой при оформлении заказа.</td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <div style="position:relative; padding-left:25px;">
+                            <input type="checkbox" id="data-processing">
+                            <label id="label-data-processing" for="data-processing">Даю согласие на обработку персональных данных</label>
+                            <span id="info-data-processing">ⓘ</span>
+                        </div>
+                        <hr>
+                        <table id="table-check" cellpadding="5">
+                            <tr>
+                                <td>Сумма заказа</td>
+                                <td class="table-number" name="price"></td>
+                            </tr>
+                            <tr>
+                                <td>Стоимость доставки<span style="color:gray">(При сумме заказа от 300₽ - БЕСПЛАТНО)</span></td>
+                                <td class="table-number" name="delivery"></td>
+                            </tr>
+                            <tr>
+                                <td id="table-result">Итого к оплате: <span id="payment-type">НАЛИЧНЫМИ КУРЬЕРУ</span></td>
+                                <td class="table-number" name="result"></td>
+                            </tr>
+                        </table>
+                        <input type="submit" id="button-checkout" value="Оформить заказ" disabled="disabled">
+                    </div>
+                </div>
+            </form>
+
+            <div id="info-block" hidden>
+                <span><b>СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ КЛИЕНТОВ - ФИЗИЧЕСКИХ И ЮРИДИЧЕСКИХ ЛИЦ</b></span>
+                <p>
+                    Пользователь, оставляя заявку на интернет-сайте https://tomskeda.ru, принимает настоящее Согласие на обработку персональных данных
+                    (далее – Согласие). Действуя свободно, своей волей и в своем интересе, а также подтверждая свою дееспособность, Пользователь дает свое
+                    согласие ИП Рогозина Наталия Александровна (ИНН 701750417893), которое расположено по адресу 634045, г. Томск, Мокрушина, д.9 стр. 31,
+                    на обработку своих персональных данных со следующими условиями:
+                </p>
+                <ol>
+                    <li>Данное Согласие дается на обработку персональных данных, как без использования средств автоматизации, так и с их использованием.</li>
+                    <li>
+                        Согласие дается на обработку следующих моих персональных данных: 1)Персональные данные, не являющиеся специальными или биометрическими:
+                        номера контактных телефонов; адреса электронной почты; место работы и занимаемая должность; пользовательские данные (сведения о местоположении;
+                        тип и версия ОС; тип и версия Браузера; тип устройства и разрешение его экрана; источник откуда пришел на сайт пользователь; с какого сайта или
+                        по какой рекламе; язык ОС и Браузера; какие страницы открывает и на какие кнопки нажимает пользователь; ip-адрес).
+                    </li>
+                    <li>Персональные данные не являются общедоступными.</li>
+                    <li>
+                        Цель обработки персональных данных: обработка входящих запросов физических лиц с целью оказания консультирования; аналитики действий
+                        физического лица на веб-сайте и функционирования веб-сайта; проведение рекламных и новостных рассылок.
+                    </li>
+                    <li>
+                        Основанием для обработки персональных данных является: ст. 24 Конституции Российской Федерации; ст.6 Федерального закона N 152-ФЗ
+                        «О персональных данных»; ИП Рогозина Наталия Александровна; настоящее согласие на обработку персональных данных
+                    </li>
+                    <li>
+                        В ходе обработки с персональными данными будут совершены следующие действия: сбор; запись; систематизация; накопление; хранение;
+                        уточнение (обновление, изменение); извлечение; использование; передача (распространение, предоставление, доступ); блокирование; удаление;
+                        уничтожение.
+                    </li>
+                    <li>
+                        Персональные данные обрабатываются до отписки физического лица от рекламных и новостных рассылок. Также обработка персональных данных
+                        может быть прекращена по запросу субъекта персональных данных. Хранение персональных данных, зафиксированных на бумажных носителях,
+                        зафиксированных на бумажных носителях осуществляется согласно Федеральному закону N 125-ФЗ «Об архивном деле в Российской Федерации» и
+                        иным нормативно правовым актам в области архивного дела и архивного хранения.
+                    </li>
+                    <li>
+                        Согласие может быть отозвано субъектом персональных данных или его представителем путем направления письменного заявления
+                        ИП Рогозина Наталия Александровна или его представителю по адресу, указанному в начале данного Согласия.
+                    </li>
+                    <li>
+                        В случае отзыва субъектом персональных данных или его представителем согласия на обработку персональных данных
+                        ИП Рогозина Наталия Александровна вправе продолжить обработку персональных данных без согласия субъекта персональных данных при
+                        наличии оснований, указанных в пунктах 2 –11 части 1 статьи 6, части 2 статьи 10 и части 2 статьи
+                        11 Федерального закона N152-ФЗ «О персональных данных» от 27.07.2006 г.
+                    </li>
+                    <li>Настоящее согласие действует все время до момента прекращения обработки персональных данных, указанных в п.7 и п.8 данного Согласия.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <table>
+            <tr>
+                <td>ИП Рогозина Наталия Александровна</td>
+                <td>Россия, г. Томск, ул. Мокрушина, 9 стр. 31</td>
+            </tr>
+            <tr>
+                <td>ИНН 701750417893</td>
+                <td>время работы: ежедневно с 8:00 до 20:00</td>
+            </tr>
+            <tr>
+                <td>ОГРН 319703100086577</td>
+                <td>Телефон для связи:+7 3822 506-555</td>
+            </tr>
+            <a href="https://www.instagram.com/tomskeda.ru/" target="_blank"><img src="pict/instagram.png"></a>
+            <a href="https://vk.com/obedvtomske" target="_blank"><img src="pict/vk.png"></a>
+        </table>
+    </div>
+    <script type="text/javascript">
+        loadCookie(@value);
+        sync();
+        scorePrice();
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" async>
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(54680473, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });</script>
+    <noscript async><div><img src="https://mc.yandex.ru/watch/54680473" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144973198-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-144973198-1');</script>
+</body>
+</html>

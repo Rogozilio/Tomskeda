@@ -1,8 +1,8 @@
 function clickDay(day = 0) {
     $(document).ready(function () {
-        $('#list-eat').load('Home/GetListFood?day='+day, function () {
-            $('#kinds-eat').load('Home/GetKindsFood?day='+day, function () {
-                $('#order').load('Home/GetMiniBasket?day='+day);
+        $('#list-eat').load('Index/GetListFood?day='+day, function () {
+            $('#kinds-eat').load('Index/GetKindsFood?day='+day, function () {
+                $('#order').load('Index/GetMiniBasket?day='+day);
             });
         });
         Cookies.set("day", day);
