@@ -5,6 +5,7 @@ using bdtest.Functions;
 using bdtest.Models;
 using bdtest.Structs;
 using Microsoft.AspNetCore.Mvc;
+using Yandex.Checkout.V3;
 
 namespace bdtest.Controllers
 {
@@ -26,14 +27,20 @@ namespace bdtest.Controllers
         }
 
         [HttpPost]
-        public string OrderSend(Order order)
+        public void OrderSend(Order order)
         {
+            
             Cookie cookie = new Cookie();
             cookie.Day = Request.Cookies["day"];
             cookie.Ids = Request.Cookies["ids" + cookie.Day];
             cookie.Counts = Request.Cookies["counts" + cookie.Day];
-            order.SendOrder(cookie);
-            return "lox";
+            if(order.Pay == "2")
+            {
+                string url = order.PaymentYandex(new Products().
+                    GetPriceProducs(cookie.Ids, cookie.Counts));
+                Response.Redirect(url);
+            }
+            //order.SendOrder(cookie);
         }
     }
 }

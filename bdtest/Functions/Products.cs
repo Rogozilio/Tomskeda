@@ -112,5 +112,24 @@ namespace bdtest.Functions
                 }
             return list;
         }
+        public int GetPriceProducs(string cookieId, string cookieCount, bool isDelivery = true)
+        {
+            if (cookieId == null || cookieCount == null)
+            {
+                return 0;
+            }
+            int j = 0;
+            int price = 0;
+            string[] count = cookieCount.Split(',');
+            string[] product = GetProductOnId(cookieId, cookieCount);
+            for(int i = 3; i < product.Length;i=i+5)
+            {
+                price += int.Parse(product[i]) * int.Parse(count[j++]);
+            }
+            if (isDelivery)
+                return (price < 300) ? price + 50 : price;
+            else
+                return price;
+        }
     }
 }
