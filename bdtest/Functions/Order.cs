@@ -69,10 +69,10 @@ namespace bdtest.Functions
         public async void SendOrder(Models.Cookie cookie)
         {
             string data = null;
-            Date date = new Date();
-            int price = new Products().GetPriceProducs(cookie.Ids, cookie.Counts, false);
-            String[] product = cookie.Ids.Split(',');
-            String[] product_kol = cookie.Counts.Split(',');
+            int price = new Products().GetPriceProducts(cookie.Ids, cookie.Counts, false);
+            string[] product = cookie.Ids.Split(',');
+            string[] product_kol = cookie.Counts.Split(',');
+            string[] product_price = new string[product.Length];
 
             Dictionary<string, string> param = new Dictionary<string, string>(11);
             param["secret"] = "2bhDGziZHfR44EtHKSRGi2Dh69daTShGTt9nShanrRdfhARTdtnreSBaREbAhk65F6ekbeBtZED64fQ7B4kGHQHkfKKrZFhsArEDz5ZfzkantQiYFAsba3rfA4AiyGDYZ6kf28niirBE6KkB8FD9tSeTGE559yQZr36b2fn8AQDtnQTkhiiD4shAYbsYz6GNTBRGH6E7H6r2H89Sfih9DsAkyR7SHDts492A5syBkNkYHkDSzKS35danT7";
@@ -85,7 +85,7 @@ namespace bdtest.Functions
             param["et"] = Floor;
             param["apart"] = Apartment;
             param["descr"] = Comment;
-            param["datetime"] = date.GetDateFrontpad(int.Parse(cookie.Day)) + Date;
+            param["datetime"] = new Date().GetDateFrontpad(int.Parse(cookie.Day)) + Date;
             param["pay"] = Pay;
 
             foreach(KeyValuePair<string, string> item in param)
@@ -93,14 +93,21 @@ namespace bdtest.Functions
                 data += "&" + item.Key + '=' + item.Value;
             }
 
+            SortProduct(ref product, ref product_kol, ref product_price);
+
             for(int i = 0;i < product.Length;i++)
             {
                 data += "&product[" + i + "]=" + product[i] + "";
                 data += "&product_kol[" + i + "]=" + product_kol[i] + "";
-                if(i == product.Length-1 && price < 300)
+                if(i < product_price.Length && product_price.Length != 3)
                 {
-                    data += "&product[" + i+1 + "]=" + 1 + "";
-                    data += "&product_kol[" + i+1 + "]=" + 1 + "";
+                    data += "&product_price[" + i + "]=" + product_price[i] + "";
+                }
+                
+                if (i == product.Length-1 && price < 300)
+                {
+                    data += "&product[" + (i+1) + "]=" + 1 + "";
+                    data += "&product_kol[" + (i+1) + "]=" + 1 + "";
                 }
             }
             await SendInFrontPad("https://app.frontpad.ru/api/index.php?new_order", data);
@@ -142,7 +149,7 @@ namespace bdtest.Functions
         /// <summary>
         /// Возвращает ссылку для осуществления оплаты
         /// </summary>
-        /// <param name="price"></param>
+        /// <param name="price">цена заказа</param>
         /// <returns></returns>
         public string PaymentYandex(int price)
         {
@@ -163,6 +170,48 @@ namespace bdtest.Functions
             };
             Payment payment = client.CreatePayment(newPayment);
             return payment.Confirmation.ConfirmationUrl;
+        }
+        private void SortProduct(ref string[] product, ref string[] product_kol, ref string[] product_price)
+        {
+            List<string> productPrice = new List<string>() { "0" };
+            List<string> productBase = new List<string>();
+            List<string> productKomplex = new List<string>() { "2" };
+            List<string> kolBase = new List<string> ();
+            List<string> kolKomplex = new List<string>();
+            int komplexi = 0;
+            string kompot = "";
+            int j = 0;
+            for(int i = 0;i < product.Length;i++)
+            {
+                if(product[i] != "2")
+                {
+                    productBase.Add(product[i]);
+                    kolBase.Add(product_kol[j++]);
+                }
+                else
+                {
+                    i++;
+                    komplexi += int.Parse(product_kol[j]);
+                    for (;product[i] != "259" && product[i] != "254"; i++)
+                    {
+                        productPrice.Add("0");
+                        productKomplex.Add(product[i]);
+                        kolKomplex.Add(product_kol[j]);
+                    }
+                    j++;
+                    kompot = product[i];
+                    i = i + 2;
+                }
+            }
+            kolKomplex.Insert(0, komplexi.ToString());
+            productPrice.AddRange(new string[] { "0", "0", "0" });
+            productKomplex.AddRange(new string[] {kompot, "275", "348"});
+            kolKomplex.AddRange(new string[] { komplexi.ToString(), komplexi.ToString(), komplexi.ToString() });
+            productKomplex.AddRange(productBase);
+            kolKomplex.AddRange(kolBase);
+            product = productKomplex.ToArray();
+            product_kol = kolKomplex.ToArray();
+            product_price = productPrice.ToArray();
         }
     }
 }

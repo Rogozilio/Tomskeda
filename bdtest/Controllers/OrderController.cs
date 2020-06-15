@@ -26,8 +26,23 @@ namespace bdtest.Controllers
             return View(data);
         }
 
+        public IActionResult OrderFinish()
+        {
+            DataSet data = new DataSet();
+            data.Date = new Date();
+            data.Products = new Products();
+            data.Day = int.Parse(Request.Cookies["day"]);
+            data.Cookie = new Models.Cookie()
+            {
+                Day = Request.Cookies["day"],
+                Ids = Request.Cookies["ids" + data.Day],
+                Counts = Request.Cookies["counts" + data.Day]
+            };
+            return View(data);
+        }
+
         [HttpPost]
-        public void OrderSend(Order order)
+        public IActionResult OrderSend(Order order)
         {
             
             Cookie cookie = new Cookie();
@@ -37,10 +52,11 @@ namespace bdtest.Controllers
             if(order.Pay == "2")
             {
                 string url = order.PaymentYandex(new Products().
-                    GetPriceProducs(cookie.Ids, cookie.Counts));
+                    GetPriceProducts(cookie.Ids, cookie.Counts));
                 Response.Redirect(url);
             }
-            //order.SendOrder(cookie);
+            order.SendOrder(cookie);
+            return RedirectToAction("OrderFinish");
         }
     }
 }

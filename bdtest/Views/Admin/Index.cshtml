@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="~/js/panelAdmin.js"></script>
+</head>
+<body>
+    <table style="margin: auto;">
+        <form action="admin/AddProduct" method="POST" enctype="multipart/form-data">
+            <tr><td>id</td><td><input type="text" name="id" readonly /></td></tr>
+            <tr><td>Название(граммы)</td><td><input type="text" name="name" size="100" maxlength="200" /></td></tr>
+            <tr><td>Описание</td><td><textarea name="description" cols="100" rows="5" maxlength="800"></textarea></td></tr>
+            <tr>
+                <td>Калории, белки, жиры, углеводы</td>
+                <td>
+                    |Ккал <input type="text" name="Kkal" size="5" />;
+                    Б <input type="text" name="Belki" size="5" />;
+                    Ж <input type="text" name="Jiry" size="5" />;
+                    У <input type="text" name="Uglevod" size="5" />
+                </td>
+            </tr>
+            <tr><td>Цена</td><td><input type="text" name="price" /> Руб</td></tr>
+            <tr>
+                <td>Тип</td>
+                <td>
+                    <select name="kind" size="1">
+                        <option value="Первые блюда">Первые блюда</option>
+                        <option value="Вторые блюда">Вторые блюда</option>
+                        <option value="Овощные блюда и гарниры">Овощные блюда и гарниры</option>
+                        <option value="Салаты и закуски">Салаты и закуски</option>
+                        <option value="Десерты, выпечка">Десерты, выпечка</option>
+                        <option value="Блины">Блины</option>
+                        <option value="Бутерброды">Бутерброды</option>
+                        <option value="Напитки">Напитки</option>
+                        <option value="Комплексные обеды">Комплексные обеды</option>
+                        <option value="Диетическое питание">Диетическое питание</option>
+                        <option value="Праздничные блюда">Праздничные блюда</option>
+                        <option value="Соусы и приправы">Соусы и приправы</option>
+                        <option value="Хлеб">Хлеб</option>
+                        <option value="Одноразовая посуда">Одноразовая посуда</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Дни</td>
+                <td>
+                    <input type="checkbox" name="day" value="1">Пн &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="komplex" value="1">Пн(комп. обед)<Br>
+                    <input type="checkbox" name="day" value="2">Вт &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="komplex" value="2">Вт(комп. обед)<Br>
+                    <input type="checkbox" name="day" value="3">Ср &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="komplex" value="3">Ср(комп. обед)<Br>
+                    <input type="checkbox" name="day" value="4">Чт &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="komplex" value="4">Чт(комп. обед)<Br>
+                    <input type="checkbox" name="day" value="5">Пт &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="komplex" value="5">Пт(комп. обед)<Br>
+                    <input type="checkbox" name="day" value="6">Сб &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="komplex" value="6">Сб(комп. обед)<Br>
+                    <input type="checkbox" name="day" value="7">Вс &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="komplex" value="7">Вс(клмп. обед)
+                </td>
+            </tr>
+            <tr><td>Картинка</td><td><input type="file" name="image" /></td></tr>
+            <input type="hidden" name="path"/>
+            <tr><td></td><td><input type="submit" name="action" value="Добавить" style="float:right" /></td></tr>
+            <tr><td></td><td><input type="submit" name="action" value="Изменить" style="float:right" disabled="true" /></td></tr>
+        </form>
+    </table>
+    <hr>
+
+    <hr>
+    <TABLE BORDER=1 WIDTH="75%" CELLSPACING=2 CELLPADDING=2 ALIGN=CENTER>
+        <TR ALIGN=CENTER VALIGN=TOP>
+            <TD ALIGN=CENTER VALIGN=TOP>Id</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Название</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Описание</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Ккал Б Ж У</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Цена</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Тип</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Дни</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Комп. обед</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>Картинка</TD>
+        </TR>
+        @foreach (var product in Model.GetAllProducts())
+        {
+        <TR ALIGN=CENTER VALIGN=TOP CLASS=str>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Id</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Name</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Description</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Info</TD>
+            <TD ALIGN=CENTER ALIGN=TOP>@product.Price</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Kind</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Day</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Komplex</TD>
+            <TD ALIGN=CENTER VALIGN=TOP>@product.Image</TD>
+        </TR>
+        }
+</body>
+</html>

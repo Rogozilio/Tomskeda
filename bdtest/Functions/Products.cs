@@ -26,7 +26,7 @@ namespace bdtest.Functions
             if (day > 0 && day < 6)
                 allKind.Add("Комплексные обеды");
             foreach(var kind in kinds.ToList())
-                foreach (var product in _base.products.ToList())
+                foreach (var product in _base.Products.ToList())
                 {
                     if (product.Day.Contains(day.ToString()) && kind == product.Kind)
                     {
@@ -50,7 +50,7 @@ namespace bdtest.Functions
         public List<Product> GetProductOnDayAndKind(int day, string kind)
         {
             List<Product> list = new List<Product>();
-            foreach (var product in _base.products.ToList())
+            foreach (var product in _base.Products.ToList())
             {
                 if(product.Day.Contains(day.ToString()) && product.Kind.Contains(kind))
                 {
@@ -62,12 +62,21 @@ namespace bdtest.Functions
         public List<Product> GetKomplexOnDayAndKind(int day, string kind)
         {
             List<Product> list = new List<Product>();
-            foreach (var product in _base.products.ToList())
+            foreach (var product in _base.Products.ToList())
             {
                 if (product.Komplex.Contains(day.ToString()) && product.Kind.Contains(kind))
                 {
                     list.Add(product);
                 }
+            }
+            return list;
+        }
+        public List<Product> GetAllProducts()
+        {
+            List<Product> list = new List<Product>();
+            foreach (var product in _base.Products.ToList())
+            {
+                list.Add(product);
             }
             return list;
         }
@@ -83,7 +92,7 @@ namespace bdtest.Functions
             string[] count = cookieCount.Split(',');
             string[] list = new string[count.Length*5];
             foreach (var cookie in cookieId.Split(','))
-                foreach (var product in _base.products.ToList())
+                foreach (var product in _base.Products.ToList())
                 {
                     if(product.Id.ToString() == cookie)
                     { 
@@ -112,7 +121,7 @@ namespace bdtest.Functions
                 }
             return list;
         }
-        public int GetPriceProducs(string cookieId, string cookieCount, bool isDelivery = true)
+        public int GetPriceProducts(string cookieId, string cookieCount, bool isDelivery = true)
         {
             if (cookieId == null || cookieCount == null)
             {

@@ -26,8 +26,8 @@ namespace bdtest
                 app.UseDeveloperExceptionPage();
             }
 
-            var options = new RewriteOptions().AddRedirect("Order/OrderSend", "order");
-                
+            var options = new RewriteOptions().AddRedirect("Order/OrderSend", "Order");
+
             app.UseRewriter(options);
             app.UseStaticFiles();
             app.UseRouting();
@@ -39,7 +39,7 @@ namespace bdtest
                 pattern: "{controller=Index}/{action=Index}");
 
                 endpoints.MapControllerRoute(
-                name: "order",
+                name: "ordersend",
                 pattern: "{controller=Order}/{action=OrderSend}");
             });
         }
