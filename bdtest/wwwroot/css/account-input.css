@@ -1,0 +1,62 @@
+﻿body {
+    background: #b6f2b9;
+}
+
+#zakaz img{
+    position:relative;
+    right:101px;
+}
+
+#delivery-food img {
+    position: relative;
+    right: 100px;
+}
+
+#main {
+    min-height: calc(100vh - 193px);
+    width: 1089px;
+    background: white;
+    margin: 8px auto 0 auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#main table {
+    margin: 0 auto;
+}
+
+form table {
+    margin: auto;
+    width: 300px;
+}
+
+#main td {
+    font-family: "Open Sans", sans-serif;
+    vertical-align: middle;
+}
+
+td input {
+    float: right;
+    height: 25px;
+    margin: 5px 0 5px 10px;
+    border: 1px solid silver;
+}
+
+    td input[type=submit] {
+        float: none;
+        height: auto;
+        text-transform: uppercase;
+        font-size: 18px;
+        color: white;
+        background: rgb(104, 180, 54);
+        cursor: pointer;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        padding: 10px 14px;
+        margin:10px 0;
+    }
+    td div{
+        width:min-content;
+        margin:auto;
+    }

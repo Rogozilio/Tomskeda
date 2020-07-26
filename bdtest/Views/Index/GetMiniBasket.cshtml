@@ -1,5 +1,5 @@
 ﻿@{ 
-    var value = @Json.Serialize(Model.Products.GetProductOnId(Model.Cookie.Ids, Model.Cookie.Counts));
+    var value = @Json.Serialize(Model.Product.GetProductOnId(Model.Cookie.Ids, Model.Cookie.Counts));
 }
 <input name="day" type="hidden" value="@Model.Day">
 <div id='date-orders'><a>@Model.Date.GetOrderOn(Model.Day)</a></div>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Доставка обедов в Томске</title>
+    <meta charset="utf-8">
+    <link acync href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/hat.css" rel="stylesheet" />
+    <link acync href="../css/footer.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/account-registration.css" rel="stylesheet" />
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="../js/hat.js"></script>
+</head>
+<body>
+    @await Html.PartialAsync("../Partial/Hat", new string[3] { "href=../Index", "href=../Account/Input", "href=/html/delivery.html" })
+    <div id="main">
+        @if (Model == true)
+        {
+            <div class="message">Пользователь с таким Моб. телефоном уже существует</div>
+        }
+        <form method="POST" action="AddUser" enctype="multipart/form-data">
+
+            <table>
+                <tr>
+                    <td><a>Моб. телефон</a></td>
+                    <td><input type="text" name="phone" placeholder="+7(___) ___-____" /></td>
+                </tr>
+                <tr>
+                    <td> Пароль</td>
+                    <td><input type="text" name="password" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Следующие данные являются не обязательными к заполнения, но сэкономят ваше врямя</td>
+                </tr>
+                <tr>
+                    <td>Имя</td>
+                    <td><input type="text" name="name" /></td>
+                </tr>
+                <tr>
+                    <td> E-mail</td>
+                    <td><input type="text" name="email" /></td>
+                </tr>
+                <tr>
+                    <td>Улица</td>
+                    <td><input type="text" name="street" /></td>
+                </tr>
+                <tr>
+                    <td>Дом</td>
+                    <td><input type="text" name="house" /></td>
+                </tr>
+                <tr>
+                    <td>Подъезд</td>
+                    <td><input type="text" name="porch" /></td>
+                </tr>
+                <tr>
+                    <td>Этаж</td>
+                    <td><input type="text" name="floor" /></td>
+                </tr>
+                <tr>
+                    <td>Кв.(Офис)</td>
+                    <td><input type="text" name="apartment" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Нажимая кнопку "Зарегистрироваться", вы принимаете условия Пользовательского соглашения</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><input type="submit" name="registation" value="Зарегистрироваться" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    @await Html.PartialAsync("../Partial/Footer")
+</body>
+</html>

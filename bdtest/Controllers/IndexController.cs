@@ -6,6 +6,7 @@ using bdtest.Functions;
 using bdtest.Structs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using bdtest.Models;
 
 namespace bdtest.Controllers
 {
@@ -14,7 +15,7 @@ namespace bdtest.Controllers
         public IActionResult Index(int day = 0)
         {
             DataSet data = new DataSet();
-            data.Products = new Products();
+            data.Product = new Product();
             data.Date = new Date();
             data.Day = data.Date.GetWeekDay()[day];
             return View(data);
@@ -22,7 +23,7 @@ namespace bdtest.Controllers
         public IActionResult GetListFood(int day = 0)
         {
             DataSet data = new DataSet();
-            data.Products = new Products();
+            data.Product = new Product();
             data.Date = new Date();
             data.Day = data.Date.GetWeekDay()[day];
             return View(data);
@@ -30,7 +31,7 @@ namespace bdtest.Controllers
         public IActionResult GetMiniBasket(int day = 0)
         {
             DataSet data = new DataSet();
-            data.Products = new Products();
+            data.Product = new Product();
             data.Date = new Date();
             data.Day = data.Date.GetWeekDay()[day];
             Response.Cookies.Append("day", data.Day.ToString());
@@ -44,9 +45,17 @@ namespace bdtest.Controllers
         public IActionResult GetKindsFood(int day = 0)
         {
             DataSet data = new DataSet();
-            data.Products = new Products();
+            data.Product = new Product();
             data.Day = new Date().GetWeekDay()[day];
             return View(data);
+        }
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+        public IActionResult Delivery()
+        {
+            return View();
         }
     }
 }

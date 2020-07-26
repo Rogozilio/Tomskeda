@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+<html lang="ru">
+<head>
+    <title>Доставка обедов в Томске</title>
+    <meta charset="utf-8">
+    <link acync href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/hat.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/footer.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/contacts.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    @await Html.PartialAsync("../Partial/Hat", new string[3] { "href=/Index", "href=/Account/Input", "href=/Index/delivery" })
+    <div id="main">
+        <h1>НАШИ КОНТАКТЫ ДЛЯ СВЯЗИ</h1>
+        <hr>
+        <div style="display:table">
+            <div>
+                <div style="float:left">
+                    <img src="../pict/contacts/contacts.png">
+                </div>
+                <div style="float:left">
+                    <a class="text-main">Контакты</a>
+                    <p class="text-main">+7 (3822) 506-555</p>
+                    <p class="text-main">+7 (913) 820-65-55</p>
+                    <p class="text-minor">Фактический адрес: 634045, г. Томск, ул. Мокрушина, д.9 стр. 31</p>
+                    <p class="text-minor">Время работы: ежедневно с 8:00 до 20:00 </p>
+                    <p class="text-minor">admin@tomskeda.ru</p>
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A2c9a7d5382266b2bc84cf7be0704cf46912df9f2b7d4424039727d562f7ed8c1&amp;width=600&amp;height=423&amp;lang=ru_RU&amp;scroll=true"></script>
+                </div>
+            </div>
+            <div>
+                <div style="float:left; margin:20px 0;">
+                    <img src="../pict/contacts/contacts2.png">
+                </div>
+                <div style="float:left; margin:20px 0;">
+                    <a class="text-main">Реквизиты</a>
+                    <p class="text-minor">Индивидуальный предприниматель Рогозина Наталия Александровна</p>
+                    <p class="text-main">ИНН <span class="text-number">701750417893</span></p>
+                    <p class="text-main">ОГРН <span class="text-number">319703100086577</span></p>
+                    <p class="text-main">Р/С <span class="text-number">40802810202500066982 в ТОЧКА ПАО БАНК “ФК ОТКРЫТИЕ”</span></p>
+                    <p class="text-main">К/С <span class="text-number">30101810845250000999</span></p>
+                    <p class="text-main">БИК <span class="text-number">044525999</span></p>
+                    <p class="text-main">Город: <span class="text-minor">Москва</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("../Partial/Footer")
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" async>
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(54680473, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });</script>
+    <noscript async><div><img src="https://mc.yandex.ru/watch/54680473" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144973198-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-144973198-1');</script>
+</body>
+</html>

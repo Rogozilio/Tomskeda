@@ -1,0 +1,163 @@
+﻿#hat a{
+    text-decoration:none;
+}
+
+#hat {
+    width: 100%;
+    min-width: 1455px;
+    height: 125px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#logo {
+    width: 231px;
+    height: 115px;
+    margin: 5px 8px 0 auto;
+    display: block;
+}
+
+#zakaz div{
+    overflow:hidden;
+    width: 101px;
+    margin: 8px auto 0 auto;
+}
+
+#zakaz img{
+    height: 75px;
+}
+
+#account div{
+    overflow: hidden;
+    width: 131px;
+    margin: 8px auto 0 auto;
+}
+
+#account img{
+    height: 75px;
+}
+
+#delivery-food div{
+    overflow: hidden;
+    width: 100px;
+    margin: 18px auto 0 auto;
+}
+
+#delivery-food img{
+    height: 65px;
+}
+
+#logo-text {
+    position: absolute;
+    top: 105px;
+    font-size: 19px;
+    color: green;
+    font-family: 'Lobster', cursive;
+}
+
+.hat-text{
+    margin: 16px;
+    color: #366c24;
+    font-family: 'Spectral', serif;
+}
+
+.work-time {
+    font-size: 16px;
+    font-family: TREBUCHET MS;
+    text-transform: uppercase;
+}
+
+.phone-work-time {
+    font-family: Verdana, Arial;
+    font-weight: bold;
+    font-size: 18px;
+    color: #959595;
+}
+
+.kont-work-time {
+    font-family: 'Spectral', serif;
+    text-decoration: none;
+    font-size: 19px;
+    color: #366c24;
+}
+
+    
+.kont-work-time:hover {
+    text-decoration: underline;
+}
+
+#zakaz:hover img {
+    right: 0px;
+}
+
+#account:hover img {
+    right: 0px;
+}
+
+#delivery-food:hover img {
+    right: 0px;
+}
+
+#miniHat a{
+    display:inline-block;
+    cursor:pointer;
+}
+
+#minihat-word {
+    float:right;
+    font-size: 18px;
+    text-align: center;
+    color: #366c24;
+    font-family: 'Spectral', serif;
+    margin: 16px 0 0 0;
+}
+
+#miniHat div a h1 {
+    float: left;
+    font-size: 18px;
+    text-align: left;
+    margin: 16px 0 0 0;
+    color: #366c24;
+    font-family: 'Spectral', serif;
+    cursor: pointer;
+}
+
+#miniHat {
+    width: 100%;
+    height: 45px;
+    top: 0;
+    left: 0;
+    background-color: white;
+    position: fixed;
+    visibility: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+    padding: 4px 0;
+}
+#miniHat img {
+    position:relative;
+    height: 40px;
+    right:40px;
+}
+
+#miniHat div a div {
+     overflow: hidden;
+     width:40px;
+     float:left;
+     margin:0 15px 0 0;
+}
+
+#miniHat div:hover:nth-child(2) a img {
+    right:0;
+}
+
+#miniHat div:hover:nth-child(3) a img {
+    right:0;
+}
+
+#miniHat div:hover:nth-child(4) a img {
+    right:0;
+}
+

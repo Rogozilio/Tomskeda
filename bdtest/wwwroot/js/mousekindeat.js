@@ -27,7 +27,7 @@ $(document).ready(function(){
     $('#list-eat').scroll(function(){
         $('#scroll-kind-eat a').each(function () { 
             id = $(this).attr('href'); 
-            distanceid = $(document.getElementById(id)).offset().top;//расстояние от текущего скрола до id
+            distanceid = $(document.getElementById(id)).offset().top;                                       //расстояние от текущего скрола до id
             currentscroll = $('#list-eat').scrollTop();
             if(currentscroll >= distanceid+currentscroll-201)
             {

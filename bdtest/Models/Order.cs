@@ -69,7 +69,7 @@ namespace bdtest.Functions
         public async void SendOrder(Models.Cookie cookie)
         {
             string data = null;
-            int price = new Products().GetPriceProducts(cookie.Ids, cookie.Counts, false);
+            int price = new Product().GetPriceProducts(cookie.Ids, cookie.Counts, false);
             string[] product = cookie.Ids.Split(',');
             string[] product_kol = cookie.Counts.Split(',');
             string[] product_price = new string[product.Length];

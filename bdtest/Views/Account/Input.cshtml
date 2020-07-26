@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Доставка обедов в Томске</title>
+    <meta charset="utf-8">
+    <link acync href="../css/hat.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/footer.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/account-input.css" rel="stylesheet" />
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="../js/hat.js"></script>
+</head>
+<body>
+    @await Html.PartialAsync("../Partial/Hat", new string[3] { "href=../Index", "", "href=/html/delivery.html" })
+    <div id="main">
+        <form method="POST" action="Account">
+            <table>
+                <tr>
+                    <td>Моб. телефон</td>
+                    <td><input type="text" name="email" /></td>
+                </tr>
+                <tr>
+                    <td>Пароль</td>
+                    <td><input type="text" name="password" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="войти" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div>Регистрация</div></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    @await Html.PartialAsync("../Partial/Footer")
+</body>
+</html>

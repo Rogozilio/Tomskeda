@@ -12,7 +12,7 @@ namespace bdtest.Structs
         /// <summary>
         /// 
         /// </summary>
-        public Products Products { get; set; }
+        public Product Product { get; set; }
         /// <summary>
         /// 
         /// </summary>

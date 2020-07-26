@@ -15,7 +15,7 @@ namespace bdtest.Controllers
         {
             DataSet data = new DataSet();
             data.Date = new Date();
-            data.Products = new Products();
+            data.Product = new Product();
             data.Day = int.Parse(Request.Cookies["day"]);
             data.Cookie = new Models.Cookie()
             {
@@ -30,7 +30,7 @@ namespace bdtest.Controllers
         {
             DataSet data = new DataSet();
             data.Date = new Date();
-            data.Products = new Products();
+            data.Product = new Product();
             data.Day = int.Parse(Request.Cookies["day"]);
             data.Cookie = new Models.Cookie()
             {
@@ -51,11 +51,11 @@ namespace bdtest.Controllers
             cookie.Counts = Request.Cookies["counts" + cookie.Day];
             if(order.Pay == "2")
             {
-                string url = order.PaymentYandex(new Products().
+                string url = order.PaymentYandex(new Product().
                     GetPriceProducts(cookie.Ids, cookie.Counts));
                 Response.Redirect(url);
             }
-            order.SendOrder(cookie);
+            //order.SendOrder(cookie);
             return RedirectToAction("OrderFinish");
         }
     }

@@ -23,7 +23,7 @@ namespace bdtest.Controllers
         }
         public IActionResult Index()
         {
-            Products products = new Products();
+            Product products = new Product();
             return View(products);
         }
 

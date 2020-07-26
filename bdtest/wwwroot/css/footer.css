@@ -1,0 +1,21 @@
+﻿#footer {
+    background: #2b2929;
+    height:60px;
+}
+
+#footer td{
+    padding: 1px 10px 1px 3px;
+}
+
+#footer table {
+    color: #959595;
+    font-family: "Open Sans", "Verdana", "sans-serif";
+    font-size: 14px;
+}
+
+#footer img {
+    float: right;
+    margin: 10px 5px;
+    width: 40px;
+    height: 40px;
+}

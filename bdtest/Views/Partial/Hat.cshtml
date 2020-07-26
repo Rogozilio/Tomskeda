@@ -1,0 +1,37 @@
+﻿
+<div id="hat">
+    <div>
+        <img src="~/pict/logo.png" id="logo" alt="Главная" />
+    </div>
+    <div style="text-align:center;">
+        <a id="zakaz" @Model[0]>
+            <div>
+                <img src="~/pict/zakaz.png" alt="Заказать обед">
+            </div>
+            <h3 class="hat-text"> ЗАКАЗАТЬ ОБЕД </h3>
+        </a>
+    </div>
+    <div style="text-align:center;">
+        <a id="account" @Model[1]>
+            <div>
+                <img src="~/pict/account.png" alt="Банкетные блюда ">
+            </div>
+            <h3 class="hat-text"> ВОЙТИ </h3>
+        </a>
+    </div>
+    <div style="text-align:center;">
+        <a id="delivery-food" @Model[2]>
+            <div>
+                <img src="~/pict/delivery_food.png" alt="Доставка и оплата">
+            </div>
+            <h3 class="hat-text"> ДОСТАВКА И ОПЛАТА </h3>
+        </a>
+    </div>
+    <div style="line-height: 40px;">
+        <div style="text-align:center;"><a class="work-time">ежедневно с 9:00 до 20:00</a></div>
+        <div style="text-align:center;"><a class="phone-work-time">+7 (3822) 506-555</a></div>
+        <div style="text-align:center;">
+            <h3 style="margin:5px 0;"><a class="kont-work-time" href="~/Index/Contacts">КОНТАКТЫ</a></h3>
+        </div>
+    </div>
+</div>
