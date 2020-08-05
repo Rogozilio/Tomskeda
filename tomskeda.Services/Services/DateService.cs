@@ -1,18 +1,19 @@
 ﻿using System;
-using bdtest.Enum;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tomskeda.Core.Enums;
+using Tomskeda.Services.Interfaces;
 
-namespace bdtest.Functions
+namespace Tomskeda.Services.Services
 {
-    public class Date
+    public class DateService : IDateService
     {
         private int _day;
         private int _month;
         private int _year;
         private DayOfWeek _wday;
-        public Date()
+        public DateService()
         {
             DateTime date = DateTime.Now.AddHours(4);
             _day = date.Day;

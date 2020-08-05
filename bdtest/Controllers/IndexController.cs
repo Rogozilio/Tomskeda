@@ -1,53 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using bdtest.Functions;
-using bdtest.Structs;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using bdtest.Models;
+using Tomskeda.Core.Entities;
+using Tomskeda.Services.Interfaces;
+using Tomskeda.Services.Structs;
 
-namespace bdtest.Controllers
+namespace Tomskeda.Controllers
 {
     public class IndexController : Controller
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IProductService _productsService;
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IDateService _dateService;
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly ICookieService _cookieService;
+        /// <summary>
+        /// 
+        /// </summary>
+        private DataSet _data;
+        public IndexController(IProductService productsService
+            , IDateService dateSerivce
+            , ICookieService cookieService)
+        {
+            _productsService = productsService;
+            _dateService = dateSerivce;
+            _cookieService = cookieService;
+            _data = new DataSet
+            {
+                Product = _productsService,
+                Date = _dateService
+            };
+        }
         public IActionResult Index(int day = 0)
         {
-            DataSet data = new DataSet();
-            data.Product = new Product();
-            data.Date = new Date();
-            data.Day = data.Date.GetWeekDay()[day];
-            return View(data);
+            _data.Day = _data.Date.GetWeekDay()[day];
+            return View(_data);
         }
         public IActionResult GetListFood(int day = 0)
         {
-            DataSet data = new DataSet();
-            data.Product = new Product();
-            data.Date = new Date();
-            data.Day = data.Date.GetWeekDay()[day];
-            return View(data);
+            _data.Day = _data.Date.GetWeekDay()[day];
+            return View(_data);
         }
         public IActionResult GetMiniBasket(int day = 0)
         {
-            DataSet data = new DataSet();
-            data.Product = new Product();
-            data.Date = new Date();
-            data.Day = data.Date.GetWeekDay()[day];
-            Response.Cookies.Append("day", data.Day.ToString());
-            data.Cookie = new Models.Cookie()
-            {
-                Ids = Request.Cookies["ids" + data.Day],
-                Counts = Request.Cookies["counts" + data.Day]
-            };
-            return View(data);
+            _data.Day = _data.Date.GetWeekDay()[day];
+            _cookieService.SetCookie(Response,"day"
+                , _data.Day.ToString());
+            _data.Cookie = _cookieService.GetValues(Request
+                , _data.Day.ToString());
+            return View(_data);
         }
         public IActionResult GetKindsFood(int day = 0)
         {
-            DataSet data = new DataSet();
-            data.Product = new Product();
-            data.Day = new Date().GetWeekDay()[day];
-            return View(data);
+            _data.Day = _data.Date.GetWeekDay()[day];
+            return View(_data);
         }
         public IActionResult Contacts()
         {

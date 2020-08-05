@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using bdtest.Functions;
-using bdtest.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage;
+using Tomskeda.Core.Entities;
+using Tomskeda.Date;
 
-namespace bdtest.Controllers
+namespace Tomskeda.Controllers
 {
     public class AdminController : Controller
     {
         IWebHostEnvironment _appEnvironment;
 
-        ProductContext _dataBase = new ProductContext();
         public AdminController(IWebHostEnvironment appEnvironment)
         {
             _appEnvironment = appEnvironment;
@@ -52,8 +51,8 @@ namespace bdtest.Controllers
                 {
                     await image.CopyToAsync(fileStream);
                 }
-                _dataBase.Add(product);
-                _dataBase.SaveChanges();
+                //_dataBase.Add(product);
+                //_dataBase.SaveChanges();
             }
             if(action == "Изменить")
             {
@@ -69,8 +68,8 @@ namespace bdtest.Controllers
                 {
                     product.Image = "/pict/eda/" + path;
                 }
-                _dataBase.Update(product);
-                _dataBase.SaveChanges();
+                //_dataBase.Update(product);
+                //_dataBase.SaveChanges();
             }
             return RedirectToAction("Index");
         }

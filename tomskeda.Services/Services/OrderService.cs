@@ -1,113 +1,62 @@
-﻿using bdtest.Models;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Security.Policy;
-using System.Text;
 using System.Threading.Tasks;
+using Tomskeda.Core.Entities;
+using Tomskeda.Services.Interfaces;
 using Yandex.Checkout.V3;
 
-namespace bdtest.Functions
+namespace Tomskeda.Services.Services
 {
-    public class Order
+    public class OrderService : IOrderService
     {
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string Name { get; set; }
-        /// <summary>
-        /// Электронная почта
-        /// </summary>
-        public string Email { get; set; }
-        /// <summary>
-        /// Сотовый телефон
-        /// </summary>
-        public string Phone { get; set; }
-        /// <summary>
-        /// Улица
-        /// </summary>
-        public string Street { get; set; }
-        /// <summary>
-        /// Номер дома
-        /// </summary>
-        public string House { get; set; }
-        /// <summary>
-        /// Номер подъезда
-        /// </summary>
-        public string Porch { get; set; }
-        /// <summary>
-        /// Этаж
-        /// </summary>
-        public string Floor { get; set; }
-        /// <summary>
-        /// Квартира или офис
-        /// </summary>
-        public string Apartment { get; set; }
-        /// <summary>
-        /// Комментарий к заказу
-        /// </summary>
-        public string Comment { get; set; }
-        /// <summary>
-        /// Время заказа
-        /// </summary>
-        public string Date { get; set; }
-        /// <summary>
-        /// Способ оплаты
-        /// </summary>
-        public string Pay { get; set; }
         /// <summary>
         /// Подготовка к отправка заказа
         /// </summary>
         /// <param name="cookie">Данные куки</param>
-        public async void SendOrder(Models.Cookie cookie)
+        public async void SendOrder(Order order, Core.Entities.Cookie cookie, int price)
         {
             string data = null;
-            int price = new Product().GetPriceProducts(cookie.Ids, cookie.Counts, false);
             string[] product = cookie.Ids.Split(',');
             string[] product_kol = cookie.Counts.Split(',');
             string[] product_price = new string[product.Length];
 
             Dictionary<string, string> param = new Dictionary<string, string>(11);
             param["secret"] = "2bhDGziZHfR44EtHKSRGi2Dh69daTShGTt9nShanrRdfhARTdtnreSBaREbAhk65F6ekbeBtZED64fQ7B4kGHQHkfKKrZFhsArEDz5ZfzkantQiYFAsba3rfA4AiyGDYZ6kf28niirBE6KkB8FD9tSeTGE559yQZr36b2fn8AQDtnQTkhiiD4shAYbsYz6GNTBRGH6E7H6r2H89Sfih9DsAkyR7SHDts492A5syBkNkYHkDSzKS35danT7";
-            param["name"] = Name;
-            param["mail"] = Email;
-            param["phone"] = Phone;
-            param["street"] = Street;
-            param["home"] = House;
-            param["pod"] = Porch;
-            param["et"] = Floor;
-            param["apart"] = Apartment;
-            param["descr"] = Comment;
-            param["datetime"] = new Date().GetDateFrontpad(int.Parse(cookie.Day)) + Date;
-            param["pay"] = Pay;
+            param["name"] = order.Name;
+            param["mail"] = order.Email;
+            param["phone"] = order.Phone;
+            param["street"] = order.Street;
+            param["home"] = order.House;
+            param["pod"] = order.Porch;
+            param["et"] = order.Floor;
+            param["apart"] = order.Apartment;
+            param["descr"] = order.Comment;
+            param["datetime"] = new DateService().GetDateFrontpad(int.Parse(cookie.Day)) + order.Date;
+            param["pay"] = order.Pay;
 
-            foreach(KeyValuePair<string, string> item in param)
+            foreach (KeyValuePair<string, string> item in param)
             {
                 data += "&" + item.Key + '=' + item.Value;
             }
 
             SortProduct(ref product, ref product_kol, ref product_price);
 
-            for(int i = 0;i < product.Length;i++)
+            for (int i = 0; i < product.Length; i++)
             {
                 data += "&product[" + i + "]=" + product[i] + "";
                 data += "&product_kol[" + i + "]=" + product_kol[i] + "";
-                if(i < product_price.Length && product_price.Length != 3)
+                if (i < product_price.Length && product_price.Length != 3)
                 {
                     data += "&product_price[" + i + "]=" + product_price[i] + "";
                 }
-                
-                if (i == product.Length-1 && price < 300)
+
+                if (i == product.Length - 1 && price < 300)
                 {
-                    data += "&product[" + (i+1) + "]=" + 1 + "";
-                    data += "&product_kol[" + (i+1) + "]=" + 1 + "";
+                    data += "&product[" + (i + 1) + "]=" + 1 + "";
+                    data += "&product_kol[" + (i + 1) + "]=" + 1 + "";
                 }
             }
             await SendInFrontPad("https://app.frontpad.ru/api/index.php?new_order", data);
@@ -118,7 +67,7 @@ namespace bdtest.Functions
         /// <param name="typeURL">ссылка куда отправить</param>
         /// <param name="data">данные отправления</param>
         /// <returns></returns>
-        private async Task<string> SendInFrontPad(string typeURL,string data)
+        private async Task<string> SendInFrontPad(string typeURL, string data)
         {
             string answer = "";
             WebRequest request = WebRequest.Create(typeURL);
@@ -151,7 +100,7 @@ namespace bdtest.Functions
         /// </summary>
         /// <param name="price">цена заказа</param>
         /// <returns></returns>
-        public string PaymentYandex(int price)
+        public string PaymentYandex(Order order, int price)
         {
             var client = new Client(
             shopId: "635308",
@@ -165,25 +114,31 @@ namespace bdtest.Functions
                     Type = ConfirmationType.Redirect,
                     ReturnUrl = "https://tomskeda.ru/Order/OrderSendr"
                 },
-                PaymentMethodData = new PaymentMethod {Type = "bank_card" },
-                Description = Name + ", полсе успешной оплаты ожидайте СМС на номер " + Phone + "."
+                PaymentMethodData = new PaymentMethod { Type = "bank_card" },
+                Description = order.Name + ", полсе успешной оплаты ожидайте СМС на номер " + order.Phone + "."
             };
             Payment payment = client.CreatePayment(newPayment);
             return payment.Confirmation.ConfirmationUrl;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="product_kol"></param>
+        /// <param name="product_price"></param>
         private void SortProduct(ref string[] product, ref string[] product_kol, ref string[] product_price)
         {
             List<string> productPrice = new List<string>() { "0" };
             List<string> productBase = new List<string>();
             List<string> productKomplex = new List<string>() { "2" };
-            List<string> kolBase = new List<string> ();
+            List<string> kolBase = new List<string>();
             List<string> kolKomplex = new List<string>();
             int komplexi = 0;
             string kompot = "";
             int j = 0;
-            for(int i = 0;i < product.Length;i++)
+            for (int i = 0; i < product.Length; i++)
             {
-                if(product[i] != "2")
+                if (product[i] != "2")
                 {
                     productBase.Add(product[i]);
                     kolBase.Add(product_kol[j++]);
@@ -192,7 +147,7 @@ namespace bdtest.Functions
                 {
                     i++;
                     komplexi += int.Parse(product_kol[j]);
-                    for (;product[i] != "259" && product[i] != "254"; i++)
+                    for (; product[i] != "259" && product[i] != "254"; i++)
                     {
                         productPrice.Add("0");
                         productKomplex.Add(product[i]);
@@ -205,7 +160,7 @@ namespace bdtest.Functions
             }
             kolKomplex.Insert(0, komplexi.ToString());
             productPrice.AddRange(new string[] { "0", "0", "0" });
-            productKomplex.AddRange(new string[] {kompot, "275", "348"});
+            productKomplex.AddRange(new string[] { kompot, "275", "348" });
             kolKomplex.AddRange(new string[] { komplexi.ToString(), komplexi.ToString(), komplexi.ToString() });
             productKomplex.AddRange(productBase);
             kolKomplex.AddRange(kolBase);

@@ -6,18 +6,18 @@
 <head>
     <title>Доставка обедов в Томске</title>
     <meta charset="utf-8">
-    <link acync href="css/hat.css" rel="stylesheet" />
+    <link acync href="../css/hat.css" rel="stylesheet" />
     <link acync href="../css/footer.css" rel="stylesheet" type="text/css" />
-    <link acync href="css/reset.css" rel="stylesheet" type="text/css" />
-    <link acync href="css/order-send.css" rel="stylesheet" />
-    <link acync href="css/autoorder.css" rel="stylesheet" />
-    <link acync href="css/autolisteat.css" rel="stylesheet" />
+    <link acync href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link acync href="../css/order-send.css" rel="stylesheet" />
+    <link acync href="../css/autoorder.css" rel="stylesheet" />
+    <link acync href="../css/autolisteat.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=0.2">
     <script src="//code.jquery.com/jquery-latest.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
-    <script src="js/order-send.js"></script>
-    <script src="js/hat.js"></script>
+    <script src="../js/jquery.maskedinput.min.js"></script>
+    <script src="../js/order-send.js"></script>
+    <script src="../js/hat.js"></script>
 </head>
 <body>
     @await Html.PartialAsync("../Partial/Hat", new string[3] { "href=../Index", "href=../Account/Input", "href=/html/delivery.html" })
@@ -41,7 +41,7 @@
                 <div class='block-eat-order'>
                     <input type="hidden" value="275" />
                     <div class='image-eat-order'>
-                        <img src="pict/eda/hleb-psenicnyj.jpg">
+                        <img src="../pict/eda/hleb-psenicnyj.jpg">
                     </div>
                     <div class='name-eat-order font'>
                         Хлеб пшеничный (кусочек) (20г)
@@ -55,7 +55,7 @@
                         <input class='text-number-order' type=tel name=number maxlength=2 value="0" />
                         <button class='btn-plus-order' style="float:right">+</button>
                     </div>
-                    <div class='price-multiply-count font'>
+                    <div class='../price-multiply-count font'>
                         0
                         <span> ₽</span>
                     </div>
@@ -63,7 +63,7 @@
                 <div class='block-eat-order'>
                     <input type="hidden" value="276" />
                     <div class='image-eat-order'>
-                        <img src="pict/eda/hleb-rzanoj-kusocek.jpg">
+                        <img src="../pict/eda/hleb-rzanoj-kusocek.jpg">
                     </div>
                     <div class='name-eat-order font'>
                         Хлеб ржаной (кусочек) (20г)
@@ -85,7 +85,7 @@
                 <div class='block-eat-order'>
                     <input type="hidden" value="348" />
                     <div class='image-eat-order'>
-                        <img src="pict/eda/odnorazovaa-posuda-vilka-lozka-noz-salfetka-zubocistka.jpg">
+                        <img src="../pict/eda/odnorazovaa-posuda-vilka-lozka-noz-salfetka-zubocistka.jpg">
                     </div>
                     <div class='name-eat-order font'>
                         Одноразовая посуда: вилка, ложка, нож, салфетка, зубочистка (1шт)
@@ -109,26 +109,7 @@
             <form method="post" action="order/OrderSend">
                 <div style="display:grid; grid-template-columns: 1fr 1fr;">
                     <div>
-                        <table>
-                            <tr><td>Имя*</td>         <td><input type="text" name="name" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Email*</td>       <td><input type="text" name="email" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Моб. телефон*</td><td><input type="text" name="phone" placeholder="+7(___) ___-____" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Улица*</td>       <td><input type="text" name="street" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Дом*</td>         <td><input type="text" name="house" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Подъезд*</td>     <td><input type="text" name="porch" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Этаж*</td>        <td><input type="text" name="floor" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Кв.(Офис)</td>    <td><input type="other" name="apartment" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                            <tr><td>Примечания</td>   <td><input type="other" name="comment" /></td></tr>
-                            <tr><td></td>             <td class="text-error"></td></tr>
-                        </table>
+                        <partial name="../Partial/DataInput" model="Model.Order" />
                     </div>
                     <div>
                         <div id="text-delivery">ВРЕМЯ ДОСТАВКИ</div>

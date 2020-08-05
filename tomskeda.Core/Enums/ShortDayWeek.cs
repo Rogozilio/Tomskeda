@@ -1,4 +1,4 @@
-﻿namespace bdtest.Enum
+﻿namespace Tomskeda.Core.Enums
 {
     public enum ShortDayWeek
     {

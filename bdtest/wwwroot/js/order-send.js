@@ -73,24 +73,24 @@ function loadCookie(product)
                                     "</div>");
         }
     }
-    if(Cookies.get("name") !== 'undefined')
-        $("input[name='name']").val(Cookies.get("name"));
-    if(Cookies.get("email") !== 'undefined')
-        $("input[name='email']").val(Cookies.get("email"));
-    if(Cookies.get("phone") !== 'undefined')
-        $("input[name='phone']").val(Cookies.get("phone"));
-    if(Cookies.get("street") !== 'undefined')
-        $("input[name='street']").val(Cookies.get("street"));
-    if(Cookies.get("house") !== 'undefined')
-        $("input[name='house']").val(Cookies.get("house"));
-    if(Cookies.get("porch") !== 'undefined')
-        $("input[name='porch']").val(Cookies.get("porch"));
-    if(Cookies.get("floor") !== 'undefined')
-        $("input[name='floor']").val(Cookies.get("floor"));
-    if(Cookies.get("apartment") !== 'undefined')
-        $("input[name='apartment']").val(Cookies.get("apartment"));
-    if(Cookies.get("comment") !== 'undefined')
-        $("input[name='comment']").val(Cookies.get("comment"));
+    if(Cookies.get("Name") !== 'undefined')
+        $("input[name='Name']").val(Cookies.get("Name"));
+    if(Cookies.get("Email") !== 'undefined')
+        $("input[name='Email']").val(Cookies.get("Email"));
+    if(Cookies.get("Phone") !== 'undefined')
+        $("input[name='Phone']").val(Cookies.get("Phone"));
+    if(Cookies.get("Street") !== 'undefined')
+        $("input[name='Street']").val(Cookies.get("Street"));
+    if(Cookies.get("House") !== 'undefined')
+        $("input[name='House']").val(Cookies.get("House"));
+    if(Cookies.get("Porch") !== 'undefined')
+        $("input[name='Porch']").val(Cookies.get("Porch"));
+    if(Cookies.get("Floor") !== 'undefined')
+        $("input[name='Floor']").val(Cookies.get("Floor"));
+    if(Cookies.get("Apartment") !== 'undefined')
+        $("input[name='Apartment']").val(Cookies.get("Apartment"));
+    if(Cookies.get("Comment") !== 'undefined')
+        $("input[name='Comment']").val(Cookies.get("Comment"));
     if(Cookies.get("date") !== undefined)
         $("select[name='date']").val(Cookies.get("date"));
     if(Cookies.get("pay") !== undefined)
@@ -296,7 +296,7 @@ $( window ).ready(function()
         $(this).closest(".komplex-order").find(".counts").html(Number(value));
     })
     //маска на телефон
-    $("input[name='phone']").mask("+7(999) 999-9999");
+    $("input[name='Phone']").mask("+7(999) 999-9999");
     //при нажатии на способ оплаты
     $("table").on("click","input[type='radio']:not(input[checked],#payChoice2)",function(){
         $("table label").css("color","black");
@@ -325,39 +325,40 @@ $( window ).ready(function()
     /////////////////////////////////
     //////РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ///////
     /////////////////////////////////
-    $("input[name='name']").blur(function(){
+    $("input[name='Name']").blur(function(){
         var pattern = new RegExp("^[A-Za-zА-Яа-я]+$");
         errorRegExp(this, 20, pattern, "Значение «Имя» должно содержать только буквенные символы.");
     })
-    $("input[name='email']").blur(function(){
+    $("input[name='Email']").blur(function(){
         var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         var pattern = new RegExp(regexEmail);
         errorRegExp(this, 50, pattern, "Значение «Email» не является правильным email адресом.");
     })
-    $("input[name='phone']").blur(function(){
-        Cookies.set("phone",$("input[name='phone']").val());
+    $("input[name='Phone']").blur(function(){
+        var pattern = new RegExp("^[+]{1}[0-9]{1}[(]{1}[0-9]{3}[)]{1} [0-9]{3}[-]{1}[0-9]{4}$");
+        errorRegExp(this, 17, pattern, "Необходимо заполнить «Моб. телефон».");
     })
-    $("input[name='street']").blur(function(){
+    $("input[name='Street']").blur(function(){
         var pattern = new RegExp("^[^a-zA-Z]+$");
         errorRegExp(this, 50, pattern, "Значение «Улица» не должно содержать английские символы.");
     })
-    $("input[name='house']").blur(function(){
+    $("input[name='House']").blur(function(){
         var pattern = new RegExp("");
         errorRegExp(this, 50, pattern, "");
     })
-    $("input[name='porch']").blur(function(){
+    $("input[name='Porch']").blur(function(){
         var pattern = new RegExp("^[0-9]+$");
         errorRegExp(this, 2, pattern, "Значение «Подъезд» должно содержать только цифры.");
     })
-    $("input[name='floor']").blur(function(){
+    $("input[name='Floor']").blur(function(){
         var pattern = new RegExp("^[0-9]+$");
         errorRegExp(this, 2, pattern, "Значение «Этаж» должно содержать только цифры.");
     })
-    $("input[name='apartment']").blur(function(){
+    $("input[name='Apartment']").blur(function(){
         var pattern = new RegExp("");
         errorRegExp(this, 50, pattern, "");
     })
-    $("input[name='comment']").blur(function(){
+    $("input[name='Comment']").blur(function(){
         var pattern = new RegExp("");
         errorRegExp(this, 100, pattern, "");
     })

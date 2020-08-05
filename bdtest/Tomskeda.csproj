@@ -8,7 +8,6 @@
     <PackageReference Include="jQuery" Version="3.5.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
     <PackageReference Include="Yandex.Checkout.V3" Version="1.0.0" />
   </ItemGroup>
 
@@ -23,6 +22,14 @@
     <None Include="wwwroot\css\reg.css" />
     <None Include="wwwroot\css\reset.css" />
     <None Include="wwwroot\css\theme.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\tomskeda.Services\Tomskeda.Services.csproj" />
   </ItemGroup>
 
 </Project>

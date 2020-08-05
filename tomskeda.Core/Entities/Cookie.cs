@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bdtest.Models
+namespace Tomskeda.Core.Entities
 {
     public class Cookie
     {

@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using bdtest.Models;
 using Microsoft.AspNetCore.Mvc;
+using Tomskeda.Core.Entities;
+using Tomskeda.Services.Interfaces;
+using Tomskeda.Services.Services;
 
-namespace bdtest.Controllers
+namespace Tomskeda.Controllers
 {
     public class AccountController : Controller
     {
-
-        public AccountController()
+        private readonly IUserService _userService;
+        public AccountController(IUserService userService)
         {
-
+            _userService = userService;
         }
         public IActionResult Input()
         {
@@ -25,16 +27,15 @@ namespace bdtest.Controllers
         [HttpPost]
         public IActionResult AddUser(User user)
         {
-            if(user.IsAccountExist())
+            if(_userService.IsAccountExist(user))
             {
                 return RedirectToAction("Registration", new { IsAccountExist = true });
             }
             else
             {
-                user.AddUser();
+                _userService.AddUser(user);
                 return View();
             }
-            
         }
     }
 }

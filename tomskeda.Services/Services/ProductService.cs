@@ -1,59 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Tomskeda.Core.Entities;
+using Tomskeda.Date;
+using Tomskeda.Services.Interfaces;
 
-namespace bdtest.Models
+namespace Tomskeda.Services.Services
 {
-    public class Product
+    public class ProductService : IProductService
     {
-        /// <summary>
-        /// Идентификатор продукта
-        /// </summary>
-        public uint Id { get; set; }
-        /// <summary>
-        /// Название продукта
-        /// </summary>
-        public string Name { get; set; }
-        /// <summary>
-        /// Информация о продукте(Ккал, Белки, Жиры, Углеводы)
-        /// </summary>
-        public string Info { get; set; }
-        /// <summary>
-        /// Цена продукта
-        /// </summary>
-        public uint Price { get; set; }
-        /// <summary>
-        /// описание продукта
-        /// </summary>
-        public string Description { get; set; }
-        /// <summary>
-        /// Путь к картинке продукта
-        /// </summary>
-        public string Image { get; set; }
-        /// <summary>
-        /// Категория продукта
-        /// </summary>
-        public string Kind { get; set; }
-        /// <summary>
-        /// День заказа продукта
-        /// </summary>
-        public string Day { get; set; }
-        /// <summary>
-        /// Комплексный жень заказа продукта
-        /// </summary>
-        public string Komplex { get; set; }
         /// <summary>
         /// Контекст базы данных продукта
         /// </summary>
-        private ProductContext _base;
+        private readonly ProductContext _base;
         /// <summary>
         /// Конструктор
         /// </summary>
-        public Product()
+        public ProductService(ProductContext productBase)
         {
-            _base = new ProductContext();
+            _base = productBase;
         }
         /// <summary>
         /// Получение категорий блюд на выбранный день

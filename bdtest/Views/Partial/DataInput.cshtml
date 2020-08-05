@@ -1,0 +1,22 @@
+﻿@using Tomskeda.Core.Entities
+@model Order
+<table>
+    <tr><td>Имя*</td>         <td><input type="text"  asp-for="Name"/></td></tr>
+    <tr><td></td>             <td class="text-error"> <span asp-validation-for="Name"></span></td></tr>
+    <tr><td>Email*</td>       <td><input type="text" asp-for="Email" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="Email"></span></td></tr>
+    <tr><td>Моб. телефон*</td><td><input type="text" asp-for="Phone" placeholder="+7(___) ___-____" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="Phone"></span></td></tr>
+    <tr><td>Улица*</td>       <td><input type="text" asp-for="Street" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="Street"></span></td></tr>
+    <tr><td>Дом*</td>         <td><input type="text" asp-for="House" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="House"></span></td></tr>
+    <tr><td>Подъезд*</td>     <td><input type="text" asp-for="Porch" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="Porch"></span></td></tr>
+    <tr><td>Этаж*</td>        <td><input type="text" asp-for="Floor" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="Floor"></span></td></tr>
+    <tr><td>Кв.(Офис)</td>    <td><input type="other" asp-for="Apartment" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="Apartment"></span></td></tr>
+    <tr><td>Примечания</td>   <td><input type="other" asp-for="Comment" /></td></tr>
+    <tr><td></td>             <td class="text-error"><span asp-validation-for="Comment"></span></td></tr>
+</table>
